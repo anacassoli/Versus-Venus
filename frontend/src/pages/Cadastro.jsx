@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./Cadastro.css";
+import "../styles/Cadastro.css";
 
 function Cadastro() {
   const navigate = useNavigate();

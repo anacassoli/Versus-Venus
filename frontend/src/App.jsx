@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
-import Cadastro from "./pages/Cadastro";
-import Dashboard from "./pages/Dashboard";
-import Livros from "./pages/Livros";
-import DetalhesLivro from "./pages/DetalhesLivro";
-import NovoLivro from "./pages/NovoLivro";
-import EditarLivro from "./pages/EditarLivro";
-import Autores from "./pages/Autores";
-import Perfil from "./pages/Perfil";
+import Login from "./pages/Login.jsx";
+import Cadastro from "./pages/Cadastro.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Livros from "./pages/Livros.jsx";
+import DetalhesLivro from "./pages/DetalhesLivro.jsx";
+import NovoLivro from "./pages/NovoLivro.jsx";
+import EditarLivro from "./pages/EditarLivro.jsx";
+import Autores from "./pages/Autores.jsx";
+import Perfil from "./pages/Perfil.jsx";
 
 function App() {
   return (
