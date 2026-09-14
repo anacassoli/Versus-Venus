@@ -1,112 +1,116 @@
+import Sidebar from "../components/Sidebar";
+import { Bell, Search, Plus, Edit3, Trash2, Eye } from "lucide-react";
+import "../index.css";
 
-import { useNavigate } from "react-router-dom";
-import "../styles/Livros.css";
+const livros = [
+  {
+    titulo: "A Hipótese do Amor",
+    autor: "Ali Hazelwood",
+    genero: "Romance",
+    ano: "2022"
+  },
+  {
+    titulo: "Binding 13",
+    autor: "Chloe Walsh",
+    genero: "Romance",
+    ano: "2018"
+  },
+  {
+    titulo: "Caçador sem coração",
+    autor: "Kristen Ciccarelli",
+    genero: "Fantasia",
+    ano: "2024"
+  },
+  {
+    titulo: "Verity",
+    autor: "Colleen Hoover",
+    genero: "Suspense",
+    ano: "2018"
+  },
+  {
+    titulo: "Era uma vez um coração partido",
+    autor: "Stephanie Garber",
+    genero: "Fantasia",
+    ano: "2021"
+  }
+];
 
-function Livros() {
-  const navigate = useNavigate();
-
-  const livros = [
-    {
-      id: 1,
-      titulo: "Livro 1",
-      autor: "Nome do Autor",
-      genero: "Romance",
-    },
-    {
-      id: 2,
-      titulo: "Livro 2",
-      autor: "Nome do Autor",
-      genero: "Fantasia",
-    },
-    {
-      id: 3,
-      titulo: "Livro 3",
-      autor: "Nome do Autor",
-      genero: "Drama",
-    },
-  ];
-
+export default function Livros() {
   return (
-    <div className="livros-page">
+    <div className="app">
 
-      <header className="livros-header">
+      <Sidebar />
 
-        <div className="livros-logo">
-          <span>Verso</span>
-          <strong>&</strong>
-          <span>Vênus</span>
-        </div>
+      <main className="main">
 
-        <nav className="livros-nav">
-          <button onClick={() => navigate("/dashboard")}>
-            Início
-          </button>
+        <header className="topbar">
+          <h2>Livros</h2>
 
-          <button className="active">
-            Livros
-          </button>
+          <div className="top-icons">
+            <Bell size={18} />
+            <div className="avatar">A</div>
+          </div>
+        </header>
 
-          <button onClick={() => navigate("/autores")}>
-            Autores
-          </button>
+        <section className="page-content">
 
-          <button onClick={() => navigate("/")}>
-            Sair
-          </button>
-        </nav>
+          <div className="page-actions">
 
-      </header>
+            <div className="search">
+              <Search size={15} />
+              <input placeholder="Buscar livro..." />
+            </div>
 
+            <button className="filter">
+              ⚱ Filtros
+            </button>
 
-      <main className="livros-content">
+            <button className="new-button">
+              <Plus size={15} />
+              Novo livro
+            </button>
 
-        <section className="livros-title">
+          </div>
 
-          <p>Explore nossa coleção</p>
+          <div className="book-list">
 
-          <h1>Livros</h1>
+            {livros.map((livro, index) => (
+              <div className="book-row" key={index}>
 
-          <span>
-            Encontre uma nova história para chamar de favorita.
-          </span>
+                <div className="mini-cover"></div>
+
+                <div className="book-info">
+                  <h3>{livro.titulo}</h3>
+                  <p>{livro.autor}</p>
+                  <small>
+                    {livro.genero} · {livro.ano}
+                  </small>
+                </div>
+
+                <span className={
+                  index === 0 || index === 4
+                    ? "status borrowed"
+                    : "status available"
+                }>
+                  {index === 0 || index === 4
+                    ? "Emprestado"
+                    : "Disponível"}
+                </span>
+
+                <div className="actions">
+                  <Edit3 size={14} />
+                  <Eye size={14} />
+                  <Trash2 size={14} />
+                </div>
+
+              </div>
+            ))}
+
+          </div>
 
         </section>
 
-
-        <div className="livros-lista">
-
-          {livros.map((livro) => (
-            <div className="livro-card" key={livro.id}>
-
-              <div className="livro-capa">
-                <span>Verso & Vênus</span>
-              </div>
-
-              <div className="livro-info">
-
-                <span className="livro-genero">
-                  {livro.genero}
-                </span>
-
-                <h2>{livro.titulo}</h2>
-
-                <p>{livro.autor}</p>
-
-                <button>
-                  Ver detalhes
-                </button>
-
-              </div>
-
-            </div>
-          ))}
-
-        </div>
-
       </main>
-
     </div>
   );
 }
-
-export default Livros;

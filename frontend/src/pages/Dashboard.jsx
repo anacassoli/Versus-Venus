@@ -1,114 +1,91 @@
-import { useNavigate } from "react-router-dom";
-import "../styles/Dashboard.css";
+import Sidebar from "../components/Sidebar";
+import { Bell, User } from "lucide-react";
+import "../index.css";
 
-function Dashboard() {
-  const navigate = useNavigate();
-
-  function handleLogout() {
-    navigate("/");
-  }
-
+export default function Dashboard() {
   return (
-    <div className="dashboard-page">
+    <div className="app">
 
-      <header className="dashboard-header">
+      <Sidebar />
 
-        <div className="dashboard-logo">
-          <span>Verso</span>
-          <strong>&</strong>
-          <span>Vênus</span>
-        </div>
+      <main className="main">
 
-        <nav className="dashboard-nav">
-          <button onClick={() => navigate("/dashboard")}>
-            Início
-          </button>
+        <header className="topbar">
+          <div></div>
 
-          <button onClick={() => navigate("/livros")}>
-            Livros
-          </button>
+          <div className="top-icons">
+            <Bell size={18} />
+            <div className="avatar">A</div>
+          </div>
+        </header>
 
-          <button onClick={() => navigate("/autores")}>
-            Autores
-          </button>
+        <section className="dashboard">
 
-          <button onClick={handleLogout}>
-            Sair
-          </button>
-        </nav>
+          <div className="metrics">
 
-      </header>
+            <div className="metric">
+              <strong>200</strong>
+              <span>Livros</span>
+              <BookIcon />
+            </div>
 
+            <div className="metric">
+              <strong>53</strong>
+              <span>Autores</span>
+              <User size={40} />
+            </div>
 
-      <main className="dashboard-content">
+            <div className="metric">
+              <strong>1m</strong>
+              <span>Usuários</span>
+              <User size={40} />
+            </div>
 
-        <section className="welcome-section">
+            <div className="metric">
+              <strong>50</strong>
+              <span>Disponíveis</span>
+              <BookIcon />
+            </div>
 
-          <p className="welcome-small">
-            Bem-vindo ao
-          </p>
-
-          <h1>
-            Verso <span>&</span> Vênus
-          </h1>
-
-          <p className="welcome-text">
-            Encontre histórias, conheça novos mundos
-            e descubra livros que podem conquistar você.
-          </p>
-
-        </section>
-
-
-        <section className="dashboard-options">
-
-          <div className="dashboard-card">
-            <h2>Livros</h2>
-
-            <p>
-              Explore nossa coleção de livros e encontre
-              sua próxima leitura.
-            </p>
-
-            <button onClick={() => navigate("/livros")}>
-              Ver livros
-            </button>
           </div>
 
+          <h3>Livros adicionados recentemente</h3>
 
-          <div className="dashboard-card">
-            <h2>Autores</h2>
+          <div className="recent-books">
 
-            <p>
-              Conheça os autores por trás das histórias
-              que fazem parte do nosso universo.
-            </p>
+            <div className="recent-book">
+              <div className="book-cover"></div>
+              <div>
+                <h3>Harry Potter e a pedra filosofal</h3>
+                <p>Fantasia · 1997</p>
+              </div>
+            </div>
 
-            <button onClick={() => navigate("/autores")}>
-              Ver autores
-            </button>
-          </div>
+            <div className="recent-book">
+              <div className="book-cover"></div>
+              <div>
+                <h3>Divinos Rivais</h3>
+                <p>Fantasia · 2022</p>
+              </div>
+            </div>
 
+            <div className="recent-book">
+              <div className="book-cover"></div>
+              <div>
+                <h3>Melhor do que nos filmes</h3>
+                <p>Romance · 2023</p>
+              </div>
+            </div>
 
-          <div className="dashboard-card">
-            <h2>Seu perfil</h2>
-
-            <p>
-              Acesse suas informações e personalize
-              sua experiência.
-            </p>
-
-            <button onClick={() => navigate("/perfil")}>
-              Meu perfil
-            </button>
           </div>
 
         </section>
 
       </main>
-
     </div>
   );
 }
 
-export default Dashboard;
+function BookIcon() {
+  return <span className="book-icon">📖</span>;
+}

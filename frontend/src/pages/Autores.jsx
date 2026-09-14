@@ -1,110 +1,76 @@
-import { useNavigate } from "react-router-dom";
-import "../styles/Autores.css";
+import Sidebar from "../components/Sidebar";
+import { Bell, Search, Plus, Edit3, Eye, Trash2 } from "lucide-react";
+import "../index.css";
 
-function Autores() {
-  const navigate = useNavigate();
+const autores = [
+  ["Ali Hazelwood", "1989", "Italiana"],
+  ["Chloe Walsh", "1985", "Irlandesa"],
+  ["Kristen Ciccarelli", "1981", "Canadense"],
+  ["Colleen Hoover", "1979", "Americana"],
+  ["Stephanie Garber", "1986", "Americana"]
+];
 
-  const autores = [
-    {
-      id: 1,
-      nome: "Colleen Hoover",
-      livros: "É assim que acaba",
-    },
-    {
-      id: 2,
-      nome: "Chloe Walsh",
-      livros: "Binding 13",
-    },
-    {
-      id: 3,
-      nome: "Alice Kellen",
-      livros: "De mil jeitos diferentes",
-    },
-  ];
-
+export default function Autores() {
   return (
-    <div className="autores-page">
+    <div className="app">
 
-      <header className="autores-header">
+      <Sidebar />
 
-        <div className="autores-logo">
-          <span>Verso</span>
-          <strong>&</strong>
-          <span>Vênus</span>
-        </div>
+      <main className="main">
 
-        <nav className="autores-nav">
+        <header className="topbar">
+          <h2>Autores</h2>
 
-          <button onClick={() => navigate("/dashboard")}>
-            Início
-          </button>
+          <div className="top-icons">
+            <Bell size={18} />
+            <div className="avatar">A</div>
+          </div>
+        </header>
 
-          <button onClick={() => navigate("/livros")}>
-            Livros
-          </button>
+        <section className="page-content">
 
-          <button className="active">
-            Autores
-          </button>
+          <div className="page-actions">
 
-          <button onClick={() => navigate("/")}>
-            Sair
-          </button>
+            <div className="search author-search">
+              <Search size={15} />
+              <input placeholder="Buscar autor..." />
+            </div>
 
-        </nav>
+            <button className="new-button">
+              <Plus size={15} />
+              Novo autor
+            </button>
 
-      </header>
+          </div>
 
+          <div className="author-list">
 
-      <main className="autores-content">
+            {autores.map((autor, index) => (
+              <div className="author-row" key={index}>
 
-        <section className="autores-title">
+                <div className="author-photo">
+                  {autor[0][0]}
+                </div>
 
-          <p>Conheça quem está por trás das histórias</p>
+                <div>
+                  <h3>{autor[0]}</h3>
+                  <p>{autor[1]} · {autor[2]}</p>
+                </div>
 
-          <h1>Autores</h1>
+                <div className="actions">
+                  <Edit3 size={14} />
+                  <Eye size={14} />
+                  <Trash2 size={14} />
+                </div>
 
-          <span>
-            Descubra novos escritores e suas histórias.
-          </span>
+              </div>
+            ))}
+
+          </div>
 
         </section>
 
-
-        <div className="autores-lista">
-
-          {autores.map((autor) => (
-            <div className="autor-card" key={autor.id}>
-
-              <div className="autor-foto">
-                <span>
-                  {autor.nome.charAt(0)}
-                </span>
-              </div>
-
-              <div className="autor-info">
-
-                <h2>{autor.nome}</h2>
-
-                <p>
-                  Livro em destaque: {autor.livros}
-                </p>
-
-                <button>
-                  Ver livros
-                </button>
-
-              </div>
-
-            </div>
-          ))}
-
-        </div>
-
       </main>
-
     </div>
   );
 }
-
-export default Autores;

@@ -1,202 +1,54 @@
+import "../index.css";
 
-import { useNavigate } from "react-router-dom";
-
-import "../styles/NovoLivro.css";
-
-function NovoLivro() {
-  const navigate = useNavigate();
-
-  function handleSalvar(event) {
-    event.preventDefault();
-
-    // Depois vamos conectar essa parte com a API
-    navigate("/livros");
-  }
-
+export default function NovoLivro() {
   return (
-    <div className="novo-livro-page">
+    <div className="new-book-page">
 
-      <aside className="sidebar">
+      <button className="back">← voltar</button>
 
-        <div className="sidebar-logo">
-          ☰
+      <h1>Adicionar um novo livro</h1>
+
+      <div className="new-book-content">
+
+        <div className="upload-box">
+          <div className="upload-icon">☁</div>
+          <p>Adicionar capa</p>
         </div>
 
-        <nav className="sidebar-menu">
+        <form className="book-form">
 
-          <button onClick={() => navigate("/dashboard")}>
-            ⌂
-            <span>Início</span>
-          </button>
+          <label>Título</label>
+          <input placeholder="Digite o título do livro" />
 
-          <button
-            onClick={() => navigate("/livros")}
-            className="active"
-          >
-            ▣
-            <span>Livros</span>
-          </button>
+          <label>Autor</label>
+          <input placeholder="Digite o autor" />
 
-          <button onClick={() => navigate("/autores")}>
-            ♧
-            <span>Autores</span>
-          </button>
+          <label>Gênero</label>
+          <input placeholder="Digite o gênero" />
 
-          <button>
-            ♙
-            <span>Usuários</span>
-          </button>
+          <label>Ano de publicação</label>
+          <input placeholder="Ex: 2000" />
 
-          <button onClick={() => navigate("/perfil")}>
-            ♙
-            <span>Meu Perfil</span>
-          </button>
+          <label>Editora</label>
+          <input placeholder="Digite a editora" />
 
-        </nav>
+          <label>Descrição</label>
+          <textarea placeholder="Fale sobre o livro..."></textarea>
 
-        <button
-          className="sidebar-sair"
-          onClick={() => navigate("/")}
-        >
-          ⇥
-        </button>
+          <div className="form-buttons">
+            <button type="button" className="cancel">
+              Cancelar
+            </button>
 
-      </aside>
-
-      <main className="novo-livro-content">
-
-        <button
-          className="voltar-button"
-          onClick={() => navigate("/livros")}
-        >
-          ← voltar
-        </button>
-
-        <h1>Adicionar um novo livro</h1>
-
-        <div className="novo-livro-form">
-
-          <div className="capa-area">
-
-            <label>Imagem da capa do livro</label>
-
-            <div className="capa-upload">
-              <div className="upload-icon">
-                ♧
-              </div>
-
-              <span>Adicionar capa</span>
-            </div>
-
+            <button type="submit" className="save">
+              Salvar
+            </button>
           </div>
 
-          <form onSubmit={handleSalvar}>
+        </form>
 
-            <div className="form-group">
-              <label htmlFor="titulo">
-                Título
-              </label>
-
-              <input
-                type="text"
-                id="titulo"
-                placeholder="Digite o título do livro"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="autor">
-                Autor
-              </label>
-
-              <input
-                type="text"
-                id="autor"
-                placeholder="Digite o autor"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="genero">
-                Gênero
-              </label>
-
-              <input
-                type="text"
-                id="genero"
-                placeholder="Digite o gênero"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="ano">
-                Ano de publicação
-              </label>
-
-              <input
-                type="number"
-                id="ano"
-                placeholder="Digite o ano"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="editora">
-                Editora
-              </label>
-
-              <input
-                type="text"
-                id="editora"
-                placeholder="Digite a editora"
-                required
-              />
-            </div>
-
-            <div className="descricao-area">
-
-              <label htmlFor="descricao">
-                Fale sobre o livro...
-              </label>
-
-              <textarea
-                id="descricao"
-                placeholder="Digite uma descrição do livro"
-              ></textarea>
-
-            </div>
-
-            <div className="botoes-form">
-
-              <button
-                type="button"
-                className="cancelar-button"
-                onClick={() => navigate("/livros")}
-              >
-                Cancelar
-              </button>
-
-              <button
-                type="submit"
-                className="salvar-button"
-              >
-                Salvar
-              </button>
-
-            </div>
-
-          </form>
-
-        </div>
-
-      </main>
+      </div>
 
     </div>
   );
 }
-
-export default NovoLivro;

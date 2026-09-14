@@ -1,5 +1,5 @@
 
-import "../styles/EditarLivro.css";
+import "../index.css";
 
 function EditarLivro() {
   return (

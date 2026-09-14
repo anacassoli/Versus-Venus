@@ -1,117 +1,58 @@
-import { useNavigate } from "react-router-dom";
-import "../styles/DetalhesLivro.css";
+import "../index.css";
 
-function DetalhesLivro() {
-  const navigate = useNavigate();
-
+export default function DetalheLivro() {
   return (
-    <div className="detalhes-page">
+    <div className="book-detail">
 
-      <header className="detalhes-header">
+      <button className="back">← voltar</button>
 
-        <div className="detalhes-logo">
-          <span>Verso</span>
-          <strong>&</strong>
-          <span>Vênus</span>
+      <div className="detail-content">
+
+        <div className="detail-cover">
+          <div className="cover-placeholder">
+            A Hipótese<br />
+            do Amor
+          </div>
         </div>
 
-        <nav className="detalhes-nav">
+        <div className="detail-text">
 
-          <button onClick={() => navigate("/dashboard")}>
-            Início
-          </button>
+          <h1>A hipótese do amor</h1>
 
-          <button onClick={() => navigate("/livros")}>
-            Livros
-          </button>
+          <p>
+            Olive Smith é uma doutoranda dedicada à ciência e não acredita
+            muito no amor — principalmente depois de algumas experiências
+            que fizeram com que ela desistisse de relacionamentos.
+          </p>
 
-          <button onClick={() => navigate("/autores")}>
-            Autores
-          </button>
+          <p>
+            O problema é que o namorado falso de Olive acaba sendo Adam
+            Carlsen, um professor famoso por sua personalidade difícil.
+          </p>
 
-          <button onClick={() => navigate("/perfil")}>
-            Perfil
-          </button>
+          <p>
+            O que começa como um simples relacionamento de mentira logo
+            se torna mais complicado quando Olive percebe que Adam talvez
+            não seja exatamente o homem que ela imaginava.
+          </p>
 
-          <button onClick={() => navigate("/")}>
-            Sair
-          </button>
+          <div className="detail-box">
 
-        </nav>
-
-      </header>
-
-
-      <main className="detalhes-content">
-
-        <button
-          className="voltar-button"
-          onClick={() => navigate("/livros")}
-        >
-          ← Voltar para livros
-        </button>
-
-
-        <section className="livro-detalhes">
-
-          <div className="detalhes-capa">
-            <span>Verso & Vênus</span>
-          </div>
-
-
-          <div className="detalhes-info">
-
-            <span className="detalhes-genero">
-              ROMANCE
-            </span>
-
-            <h1>
-              Livro em destaque
-            </h1>
-
-            <p className="detalhes-autor">
-              Nome do Autor
-            </p>
-
-            <p className="detalhes-descricao">
-              Aqui ficará a descrição do livro. Você poderá
-              conhecer um pouco mais sobre a história, os
-              personagens e o universo criado pelo autor.
-            </p>
-
-
-            <div className="detalhes-informacoes">
-
-              <div>
-                <span>Autor</span>
-                <p>Nome do Autor</p>
-              </div>
-
-              <div>
-                <span>Gênero</span>
-                <p>Romance</p>
-              </div>
-
-              <div>
-                <span>Ano</span>
-                <p>2026</p>
-              </div>
-
-            </div>
-
-
-            <button className="favorito-button">
-              ♡ Adicionar aos favoritos
-            </button>
+            <p><strong>Gênero</strong> Romance</p>
+            <p><strong>Ano</strong> 2022</p>
+            <p><strong>Autora</strong> Ali Hazelwood</p>
+            <p><strong>Editora</strong> Arqueiro</p>
 
           </div>
 
-        </section>
+          <div className="stars">
+            ☆ ☆ ☆ ☆ ☆
+          </div>
 
-      </main>
+        </div>
+
+      </div>
 
     </div>
   );
 }
-
-export default DetalhesLivro;

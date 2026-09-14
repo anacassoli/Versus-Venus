@@ -1,94 +1,60 @@
-import { useNavigate } from "react-router-dom";
-import "../styles/Perfil.css";
+import Sidebar from "../components/Sidebar";
+import { Bell, Camera } from "lucide-react";
+import "../index.css";
 
-function Perfil() {
-  const navigate = useNavigate();
-
+export default function Perfil() {
   return (
-    <div className="perfil-page">
+    <div className="app">
 
-      <header className="perfil-header">
+      <Sidebar />
 
-        <div className="perfil-logo">
-          <span>Verso</span>
-          <strong>&</strong>
-          <span>Vênus</span>
-        </div>
+      <main className="main">
 
-        <nav className="perfil-nav">
+        <header className="topbar">
+          <h2>Meu Perfil</h2>
 
-          <button onClick={() => navigate("/dashboard")}>
-            Início
-          </button>
-
-          <button onClick={() => navigate("/livros")}>
-            Livros
-          </button>
-
-          <button onClick={() => navigate("/autores")}>
-            Autores
-          </button>
-
-          <button className="active">
-            Perfil
-          </button>
-
-          <button onClick={() => navigate("/")}>
-            Sair
-          </button>
-
-        </nav>
-
-      </header>
-
-
-      <main className="perfil-content">
-
-        <section className="perfil-title">
-
-          <p>Suas informações</p>
-
-          <h1>Meu perfil</h1>
-
-          <span>
-            Gerencie suas informações dentro da plataforma.
-          </span>
-
-        </section>
-
-
-        <section className="perfil-card">
-
-          <div className="perfil-avatar">
-            A
+          <div className="top-icons">
+            <Bell size={18} />
+            <div className="avatar">A</div>
           </div>
+        </header>
 
-          <div className="perfil-info">
+        <section className="profile-content">
 
-            <h2>Olá!</h2>
+          <div className="profile-card">
 
-            <div className="perfil-item">
-              <span>Nome</span>
-              <p>Seu nome</p>
+            <div className="profile-photo">
+              V
+              <div className="camera">
+                <Camera size={13} />
+              </div>
             </div>
 
-            <div className="perfil-item">
-              <span>E-mail</span>
-              <p>seuemail@email.com</p>
-            </div>
+            <h2>Virginia</h2>
+            <p>virginia@gmail.com</p>
+
+            <label>Nome completo</label>
+            <input value="Virginia" readOnly />
+
+            <label>E-mail</label>
+            <input value="virginia@gmail.com" readOnly />
+
+            <label>Senha</label>
+            <input value="••••••••" readOnly />
+
+            <button className="profile-save">
+              Salvar alterações
+            </button>
+
+            <button className="delete-account">
+              Sair da conta
+            </button>
 
           </div>
-
-          <button className="editar-button">
-            Editar informações
-          </button>
 
         </section>
 
       </main>
-
     </div>
   );
 }
-
-export default Perfil;

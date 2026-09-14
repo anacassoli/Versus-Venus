@@ -1,94 +1,63 @@
 
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../index.css";
 
-import "../styles/Login.css";
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
 
-function Login() {
   const navigate = useNavigate();
 
-  function handleLogin(event) {
-    event.preventDefault();
-
-    const email = event.target.email.value;
-    const senha = event.target.senha.value;
-
-    // Usuário de teste
-    if (email === "teste@versoenus.com" && senha === "123456") {
-      localStorage.setItem("token", "teste-logado");
+  function entrar() {
+    if (email === "biblioteca@gmail.com" && senha === "123456") {
+      localStorage.setItem("logado", "true");
       navigate("/dashboard");
     } else {
-      alert("E-mail ou senha incorretos.");
+      setErro("E-mail ou senha incorretos!");
     }
   }
 
   return (
-    <div className="login-page">
-      <div className="login-card">
+    <div className="auth-page">
+      <div className="auth-content">
 
-        <div className="login-logo">
-          <span>Verso</span>
-          <strong>&</strong>
-          <span>Vênus</span>
-        </div>
+        <h1>Verso & Vênus</h1>
+        <p>Seu próximo capítulo começa aqui!</p>
 
-        <p className="login-subtitle">
-          Onde cada história encontra você
-        </p>
+        <div className="auth-card">
+          <h2>Bem vindo de volta!</h2>
+          <small>Entre para continuar</small>
 
-        <h1>Bem-vindo!</h1>
+          <label>E-mail</label>
+          <input
+            type="email"
+            placeholder="Insira seu e-mail aqui"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <p className="login-description">
-          Entre na sua conta para continuar.
-        </p>
+          <label>Senha</label>
+          <input
+            type="password"
+            placeholder="Insira sua senha aqui"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
 
-        <form onSubmit={handleLogin}>
-          <div className="input-group">
-            <label htmlFor="email">E-mail</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Digite seu e-mail"
-              required
-            />
-          </div>
-
-          <div className="input-group">
-            <label htmlFor="senha">Senha</label>
-            <input
-              type="password"
-              id="senha"
-              placeholder="Digite sua senha"
-              required
-            />
-          </div>
-
-          <div className="login-options">
-            <label className="remember">
-              <input type="checkbox" />
-              <span>Lembrar de mim</span>
-            </label>
-
-            <a href="#" className="forgot-password">
-              Esqueci minha senha
-            </a>
-          </div>
-
-          <button type="submit" className="login-button">
+          <button className="btn-auth" onClick={entrar}>
             Entrar
           </button>
-        </form>
 
-        <div className="register-area">
-          <span>Não possui uma conta?</span>
+          {erro && <p className="erro">{erro}</p>}
 
-          <Link to="/cadastro">
-            Cadastre-se
-          </Link>
+          <p className="auth-link">
+            Não tem uma conta? <span>Cadastre-se</span>
+          </p>
         </div>
 
       </div>
     </div>
   );
 }
-
-export default Login;

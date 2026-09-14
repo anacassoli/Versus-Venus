@@ -1,36 +1,51 @@
+import {
+  BookOpen,
+  House,
+  Tags,
+  Users,
+  User,
+  LogOut
+} from "lucide-react";
 
-import { Link } from "react-router-dom";
-
-function Sidebar() {
+export default function Sidebar() {
   return (
     <aside className="sidebar">
 
       <div className="sidebar-logo">
-        <h2>Bookly</h2>
+        <BookOpen size={25} />
       </div>
 
-      <nav className="sidebar-nav">
+      <nav>
+        <a>
+          <House size={18} />
+          <span>Início</span>
+        </a>
 
-        <Link to="/dashboard">
-          Dashboard
-        </Link>
+        <a>
+          <BookOpen size={18} />
+          <span>Livros</span>
+        </a>
 
-        <Link to="/livros">
-          Livros
-        </Link>
+        <a>
+          <Tags size={18} />
+          <span>Autores</span>
+        </a>
 
-        <Link to="/autores">
-          Autores
-        </Link>
+        <a>
+          <Users size={18} />
+          <span>Usuários</span>
+        </a>
 
-        <Link to="/perfil">
-          Perfil
-        </Link>
-
+        <a>
+          <User size={18} />
+          <span>Meu Perfil</span>
+        </a>
       </nav>
+
+      <div className="logout">
+        <LogOut size={18} />
+      </div>
 
     </aside>
   );
 }
-
-export default Sidebar;
