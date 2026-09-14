@@ -1,0 +1,110 @@
+
+.editar-livro {
+  min-height: 100vh;
+  background-color: #f5f7f6;
+}
+
+/* HEADER */
+
+.editar-livro-header {
+  width: 100%;
+  height: 80px;
+  padding: 0 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.editar-livro-header h1 {
+  font-size: 28px;
+  color: #1f3d32;
+}
+
+.btn-voltar {
+  padding: 10px 22px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #1f3d32;
+  color: white;
+
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* CONTEÚDO */
+
+.editar-livro-content {
+  padding: 50px 60px;
+}
+
+/* CARD */
+
+.editar-livro-card {
+  width: 600px;
+  padding: 35px;
+
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+}
+
+/* CAMPOS */
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 8px;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f3d32;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid #d5d5d5;
+  border-radius: 7px;
+
+  font-size: 15px;
+  font-family: inherit;
+
+  outline: none;
+}
+
+.campo textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* BOTÃO */
+
+.btn-salvar {
+  margin-top: 10px;
+  padding: 12px 25px;
+
+  border: none;
+  border-radius: 7px;
+
+  background-color: #1f3d32;
+  color: white;
+
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-salvar:hover {
+  opacity: 0.9;
+}
+

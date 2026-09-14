@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login.jsx";
@@ -10,29 +11,93 @@ import EditarLivro from "./pages/EditarLivro.jsx";
 import Autores from "./pages/Autores.jsx";
 import Perfil from "./pages/Perfil.jsx";
 
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
         {/* Login e cadastro */}
+
         <Route path="/" element={<Login />} />
+
         <Route path="/cadastro" element={<Cadastro />} />
 
+
         {/* Área principal */}
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* Livros */}
-        <Route path="/livros" element={<Livros />} />
-        <Route path="/livros/:id" element={<DetalhesLivro />} />
-        <Route path="/livros/novo" element={<NovoLivro />} />
-        <Route path="/livros/:id/editar" element={<EditarLivro />} />
+
+        <Route
+          path="/livros"
+          element={
+            <ProtectedRoute>
+              <Livros />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/livros/:id"
+          element={
+            <ProtectedRoute>
+              <DetalhesLivro />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/livros/novo"
+          element={
+            <ProtectedRoute>
+              <NovoLivro />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/livros/:id/editar"
+          element={
+            <ProtectedRoute>
+              <EditarLivro />
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* Autores */}
-        <Route path="/autores" element={<Autores />} />
+
+        <Route
+          path="/autores"
+          element={
+            <ProtectedRoute>
+              <Autores />
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* Perfil */}
-        <Route path="/perfil" element={<Perfil />} />
+
+        <Route
+          path="/perfil"
+          element={
+            <ProtectedRoute>
+              <Perfil />
+            </ProtectedRoute>
+          }
+        />
 
       </Routes>
     </BrowserRouter>
@@ -40,3 +105,4 @@ function App() {
 }
 
 export default App;
+

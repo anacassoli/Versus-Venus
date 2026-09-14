@@ -1,5 +1,7 @@
+
 import { useNavigate } from "react-router-dom";
-import "./NovoLivro.css";
+
+import "../styles/NovoLivro.css";
 
 function NovoLivro() {
   const navigate = useNavigate();
@@ -15,15 +17,22 @@ function NovoLivro() {
     <div className="novo-livro-page">
 
       <aside className="sidebar">
-        <div className="sidebar-logo">☰</div>
+
+        <div className="sidebar-logo">
+          ☰
+        </div>
 
         <nav className="sidebar-menu">
+
           <button onClick={() => navigate("/dashboard")}>
             ⌂
             <span>Início</span>
           </button>
 
-          <button onClick={() => navigate("/livros")} className="active">
+          <button
+            onClick={() => navigate("/livros")}
+            className="active"
+          >
             ▣
             <span>Livros</span>
           </button>
@@ -42,11 +51,16 @@ function NovoLivro() {
             ♙
             <span>Meu Perfil</span>
           </button>
+
         </nav>
 
-        <button className="sidebar-sair" onClick={() => navigate("/")}>
+        <button
+          className="sidebar-sair"
+          onClick={() => navigate("/")}
+        >
           ⇥
         </button>
+
       </aside>
 
       <main className="novo-livro-content">
@@ -63,18 +77,26 @@ function NovoLivro() {
         <div className="novo-livro-form">
 
           <div className="capa-area">
+
             <label>Imagem da capa do livro</label>
 
             <div className="capa-upload">
-              <div className="upload-icon">♧</div>
+              <div className="upload-icon">
+                ♧
+              </div>
+
               <span>Adicionar capa</span>
             </div>
+
           </div>
 
           <form onSubmit={handleSalvar}>
 
             <div className="form-group">
-              <label htmlFor="titulo">Título</label>
+              <label htmlFor="titulo">
+                Título
+              </label>
+
               <input
                 type="text"
                 id="titulo"
@@ -84,7 +106,10 @@ function NovoLivro() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="autor">Autor</label>
+              <label htmlFor="autor">
+                Autor
+              </label>
+
               <input
                 type="text"
                 id="autor"
@@ -94,7 +119,10 @@ function NovoLivro() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="genero">Gênero</label>
+              <label htmlFor="genero">
+                Gênero
+              </label>
+
               <input
                 type="text"
                 id="genero"
@@ -104,7 +132,10 @@ function NovoLivro() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="ano">Ano de publicação</label>
+              <label htmlFor="ano">
+                Ano de publicação
+              </label>
+
               <input
                 type="number"
                 id="ano"
@@ -114,7 +145,10 @@ function NovoLivro() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="editora">Editora</label>
+              <label htmlFor="editora">
+                Editora
+              </label>
+
               <input
                 type="text"
                 id="editora"
@@ -124,15 +158,20 @@ function NovoLivro() {
             </div>
 
             <div className="descricao-area">
-              <label htmlFor="descricao">Fale sobre o livro...</label>
+
+              <label htmlFor="descricao">
+                Fale sobre o livro...
+              </label>
 
               <textarea
                 id="descricao"
                 placeholder="Digite uma descrição do livro"
               ></textarea>
+
             </div>
 
             <div className="botoes-form">
+
               <button
                 type="button"
                 className="cancelar-button"
@@ -141,9 +180,13 @@ function NovoLivro() {
                 Cancelar
               </button>
 
-              <button type="submit" className="salvar-button">
+              <button
+                type="submit"
+                className="salvar-button"
+              >
                 Salvar
               </button>
+
             </div>
 
           </form>
@@ -151,6 +194,7 @@ function NovoLivro() {
         </div>
 
       </main>
+
     </div>
   );
 }

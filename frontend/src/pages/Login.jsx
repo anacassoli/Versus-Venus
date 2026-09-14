@@ -1,4 +1,6 @@
+
 import { Link, useNavigate } from "react-router-dom";
+
 import "../styles/Login.css";
 
 function Login() {
@@ -7,13 +9,20 @@ function Login() {
   function handleLogin(event) {
     event.preventDefault();
 
-    // Depois vamos conectar essa parte com a API
-    navigate("/dashboard");
+    const email = event.target.email.value;
+    const senha = event.target.senha.value;
+
+    // Usuário de teste
+    if (email === "teste@versoenus.com" && senha === "123456") {
+      localStorage.setItem("token", "teste-logado");
+      navigate("/dashboard");
+    } else {
+      alert("E-mail ou senha incorretos.");
+    }
   }
 
   return (
     <div className="login-page">
-
       <div className="login-card">
 
         <div className="login-logo">
@@ -33,10 +42,8 @@ function Login() {
         </p>
 
         <form onSubmit={handleLogin}>
-
           <div className="input-group">
             <label htmlFor="email">E-mail</label>
-
             <input
               type="email"
               id="email"
@@ -47,7 +54,6 @@ function Login() {
 
           <div className="input-group">
             <label htmlFor="senha">Senha</label>
-
             <input
               type="password"
               id="senha"
@@ -70,7 +76,6 @@ function Login() {
           <button type="submit" className="login-button">
             Entrar
           </button>
-
         </form>
 
         <div className="register-area">
@@ -82,7 +87,6 @@ function Login() {
         </div>
 
       </div>
-
     </div>
   );
 }

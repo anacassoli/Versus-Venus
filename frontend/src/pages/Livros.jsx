@@ -1,6 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
-import "./Livros.css";
+import "../styles/Livros.css";
 
 function Livros() {
   const navigate = useNavigate();
