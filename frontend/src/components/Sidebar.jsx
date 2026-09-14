@@ -13,10 +13,15 @@ import {
 export default function Sidebar() {
   const navigate = useNavigate();
 
-  function sair() {
-    localStorage.removeItem("token");
-    navigate("/");
-  }
+  
+function sair() {
+  localStorage.removeItem("logado");
+  localStorage.removeItem("usuario");
+
+  navigate("/");
+}
+
+
 
   return (
     <aside className="sidebar">
@@ -42,10 +47,10 @@ export default function Sidebar() {
           <span>Autores</span>
         </a>
 
-        <a>
-          <Users size={18} />
-          <span>Usuários</span>
-        </a>
+        <a onClick={() => navigate("/usuarios")}>
+  <Users size={18} />
+  <span>Usuários</span>
+</a>
 
         <a onClick={() => navigate("/perfil")}>
           <User size={18} />

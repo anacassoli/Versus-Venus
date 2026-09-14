@@ -1,113 +1,154 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import "../index.css";
 
 export default function Cadastro() {
+
   const navigate = useNavigate();
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  function cadastrar() {
-    if (!nome || !email || !senha || !confirmarSenha) {
-      setErro("Preencha todos os campos!");
+  async function cadastrar(event) {
+
+    event.preventDefault();
+
+    setErro("");
+
+    // Verifica se os campos foram preenchidos
+    if (!nome.trim() || !email.trim() || !senha.trim()) {
+      setErro("Preencha todos os campos.");
       return;
     }
 
-    if (senha !== confirmarSenha) {
-      setErro("As senhas não são iguais!");
+    // Verifica o tamanho da senha
+    if (senha.length < 6) {
+      setErro("A senha deve ter pelo menos 6 caracteres.");
       return;
     }
 
-    localStorage.setItem(
-      "cadastroUsuario",
-      JSON.stringify({
-        nome,
-        email,
-        senha,
-      })
-    );
+    try {
 
-    navigate("/");
-  }
+      const resposta = await fetch(
+        "http://localhost:3000/usuarios",
+        {
+          method: "POST",
 
-  function irParaLogin() {
-    navigate("/");
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            nome: nome.trim(),
+            email: email.trim(),
+            senha,
+          }),
+        }
+      );
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+
+        setErro(
+          dados.erro || "Erro ao cadastrar usuário."
+        );
+
+        return;
+      }
+
+      navigate("/");
+
+    } catch (error) {
+
+      console.error("Erro:", error);
+
+      setErro(
+        "Não foi possível conectar ao servidor."
+      );
+    }
   }
 
   return (
-    <div className="auth-page">
 
-      <div className="auth-content cadastro">
+    <div className="login-page">
+
+      <div className="login-box">
 
         <h1>Verso & Vênus</h1>
 
-        <p>Crie sua conta para começar uma nova história!</p>
+        <p className="login-subtitle">
+          Crie sua conta
+        </p>
 
-        <div className="auth-card cadastro-card">
+        <form onSubmit={cadastrar}>
 
-          <h2>Criar conta</h2>
-
-          <small>Preencha os dados para fazer o cadastro</small>
-
-          <label>Nome completo</label>
+          <label>
+            Nome
+          </label>
 
           <input
-            placeholder="Digite seu nome completo..."
+            type="text"
+            placeholder="Digite seu nome"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
+            required
           />
 
-          <label>E-mail</label>
+          <label>
+            E-mail
+          </label>
 
           <input
             type="email"
-            placeholder="seu@email.com"
+            placeholder="Digite seu e-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
-          <label>Senha</label>
+          <label>
+            Senha
+          </label>
 
           <input
             type="password"
-            placeholder="Digite sua senha..."
+            placeholder="Digite sua senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
+            required
           />
-
-          <label>Confirmar senha</label>
-
-          <input
-            type="password"
-            placeholder="Confirme sua senha..."
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
-          />
-
-          <button className="btn-auth" onClick={cadastrar}>
-            Cadastrar
-          </button>
 
           {erro && (
-            <p className="erro">
+            <p className="login-error">
               {erro}
             </p>
           )}
 
-          <p className="auth-link">
-            Já tem uma conta?{" "}
-            <span onClick={irParaLogin}>
-              Faça login
-            </span>
-          </p>
+          <button
+            type="submit"
+            className="login-button"
+          >
+            Criar conta
+          </button>
 
-        </div>
+        </form>
+
+        <p className="login-register">
+
+          Já possui uma conta?
+
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+          >
+            Entrar
+          </button>
+
+        </p>
 
       </div>
 

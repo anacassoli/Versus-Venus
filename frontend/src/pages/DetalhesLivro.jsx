@@ -1,22 +1,29 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Sidebar from "../components/Sidebar";
+import {
+  Bell,
+  ArrowLeft,
+  Edit3
+} from "lucide-react";
 import "../index.css";
 
 export default function DetalheLivro() {
-  const navigate = useNavigate();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [livro, setLivro] = useState(null);
 
   useEffect(() => {
     buscarLivro();
-  }, [id]);
+  }, []);
 
   async function buscarLivro() {
     try {
-      const resposta = await fetch(`http://localhost:3000/livros/${id}`);
+      const resposta = await fetch(
+        `http://localhost:3000/livros/${id}`
+      );
 
       if (!resposta.ok) {
         throw new Error("Erro ao buscar livro");
@@ -32,73 +39,179 @@ export default function DetalheLivro() {
 
   if (!livro) {
     return (
-      <div className="book-detail">
-        <p>Carregando livro...</p>
+      <div className="app">
+
+        <Sidebar />
+
+        <main className="main">
+
+          <header className="topbar">
+            <h2>Livro</h2>
+
+            <div className="top-icons">
+              <Bell size={18} />
+
+              <div className="avatar">
+                A
+              </div>
+            </div>
+          </header>
+
+          <section className="page-content">
+            <p>Carregando livro...</p>
+          </section>
+
+        </main>
+
       </div>
     );
   }
 
   return (
-    <div className="book-detail">
+    <div className="app">
 
-      <button
-        className="back"
-        onClick={() => navigate("/livros")}
-      >
-        ← voltar
-      </button>
+      <Sidebar />
 
-      <div className="detail-content">
+      <main className="main">
 
-        <div className="detail-cover">
+        <header className="topbar">
 
-          <div className="cover-placeholder">
-            {livro.titulo}
+          <h2>Detalhes do livro</h2>
+
+          <div className="top-icons">
+            <Bell size={18} />
+
+            <div className="avatar">
+              A
+            </div>
           </div>
 
-        </div>
+        </header>
 
-        <div className="detail-text">
+        <section className="page-content">
 
-          <h1>{livro.titulo}</h1>
+          <button
+            className="detail-back"
+            onClick={() => navigate("/livros")}
+          >
+            <ArrowLeft size={16} />
+            Voltar para livros
+          </button>
 
-          <p>
-            {livro.descricao || "Descrição não informada."}
-          </p>
+          <div className="book-detail">
 
-          <div className="detail-box">
+            <div className="book-detail-cover">
 
-            <p>
-              <strong>Gênero</strong>{" "}
-              {livro.genero || "--"}
-            </p>
+              {livro.capa ? (
 
-            <p>
-              <strong>Ano</strong>{" "}
-              {livro.ano || "--"}
-            </p>
+                <img
+                  src={`http://localhost:3000${livro.capa}`}
+                  alt={livro.titulo}
+                />
 
-            <p>
-              <strong>Autor</strong>{" "}
-              {livro.autor || "--"}
-            </p>
+              ) : (
 
-            <p>
-              <strong>Editora</strong>{" "}
-              {livro.editora || "--"}
-            </p>
+                <div className="book-cover-placeholder">
+                  📖
+                </div>
+
+              )}
+
+            </div>
+
+            <div className="book-detail-info">
+
+              <span className="detail-label">
+                DETALHES DO LIVRO
+              </span>
+
+              <h1>
+                {livro.titulo}
+              </h1>
+
+              <p className="book-author">
+                {livro.autor ||
+                  "Autor não informado"}
+              </p>
+
+              <div className="book-info-box">
+
+                <div>
+                  <span>Gênero</span>
+
+                  <strong>
+                    {livro.genero ||
+                      "Não informado"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Ano de publicação</span>
+
+                  <strong>
+                    {livro.ano_publicacao ||
+                      "Não informado"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Editora</span>
+
+                  <strong>
+                    {livro.editora ||
+                      "Não informada"}
+                  </strong>
+                </div>
+
+              </div>
+
+              <div className="book-description">
+
+                <h3>
+                  Sobre o livro
+                </h3>
+
+                <p>
+                  {livro.descricao ||
+                    "Nenhuma descrição cadastrada."}
+                </p>
+
+              </div>
+
+              <div className="detail-actions">
+
+                <button
+                  className="back-button"
+                  onClick={() =>
+                    navigate("/livros")
+                  }
+                >
+                  <ArrowLeft size={15} />
+                  Voltar
+                </button>
+
+                <button
+                  className="edit-button"
+                  onClick={() =>
+                    navigate(
+                      `/livros/${livro.id}/editar`
+                    )
+                  }
+                >
+                  <Edit3 size={15} />
+                  Editar livro
+                </button>
+
+              </div>
+
+            </div>
 
           </div>
 
-          <div className="stars">
-            ☆ ☆ ☆ ☆ ☆
-          </div>
+        </section>
 
-        </div>
-
-      </div>
+      </main>
 
     </div>
   );
 }
-

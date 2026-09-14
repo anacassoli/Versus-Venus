@@ -1,22 +1,33 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Sidebar from "../components/Sidebar";
+import {
+  Bell,
+  ArrowLeft,
+  Save
+} from "lucide-react";
 import "../index.css";
 
-function EditarLivro() {
-  const navigate = useNavigate();
+export default function EditarLivro() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [titulo, setTitulo] = useState("");
-  const [autor, setAutor] = useState("");
-  const [genero, setGenero] = useState("");
-  const [ano, setAno] = useState("");
+  const [autorId, setAutorId] = useState("");
+  const [generoId, setGeneroId] = useState("");
+  const [anoPublicacao, setAnoPublicacao] = useState("");
+  const [editora, setEditora] = useState("");
   const [descricao, setDescricao] = useState("");
+
+  const [autores, setAutores] = useState([]);
+  const [generos, setGeneros] = useState([]);
 
   useEffect(() => {
     buscarLivro();
-  }, [id]);
+    buscarAutores();
+    buscarGeneros();
+  }, []);
 
   async function buscarLivro() {
     try {
@@ -31,9 +42,12 @@ function EditarLivro() {
       const livro = await resposta.json();
 
       setTitulo(livro.titulo || "");
-      setAutor(livro.autor || "");
-      setGenero(livro.genero || "");
-      setAno(livro.ano || "");
+      setAutorId(livro.autor_id || "");
+      setGeneroId(livro.genero_id || "");
+      setAnoPublicacao(
+        livro.ano_publicacao || ""
+      );
+      setEditora(livro.editora || "");
       setDescricao(livro.descricao || "");
 
     } catch (error) {
@@ -41,30 +55,76 @@ function EditarLivro() {
     }
   }
 
-  async function salvarAlteracoes() {
+  async function buscarAutores() {
+    try {
+      const resposta = await fetch(
+        "http://localhost:3000/autores"
+      );
+
+      const dados = await resposta.json();
+
+      setAutores(dados);
+
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  }
+
+  async function buscarGeneros() {
+    try {
+      const resposta = await fetch(
+        "http://localhost:3000/generos"
+      );
+
+      const dados = await resposta.json();
+
+      setGeneros(dados);
+
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  }
+
+  async function salvarAlteracoes(event) {
+    event.preventDefault();
+
     try {
       const resposta = await fetch(
         `http://localhost:3000/livros/${id}`,
         {
           method: "PUT",
+
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
+
           body: JSON.stringify({
             titulo,
-            autor,
-            genero,
-            ano,
-            descricao,
-          }),
+
+            autor_id: Number(autorId),
+
+            genero_id: generoId
+              ? Number(generoId)
+              : null,
+
+            ano_publicacao: anoPublicacao
+              ? Number(anoPublicacao)
+              : null,
+
+            editora,
+
+            descricao
+          })
         }
       );
 
       if (!resposta.ok) {
-        throw new Error("Erro ao atualizar livro");
+        throw new Error(
+          "Erro ao editar livro"
+        );
       }
 
-      navigate("/livros");
+      navigate(`/livros/${id}`);
 
     } catch (error) {
       console.error("Erro:", error);
@@ -72,98 +132,241 @@ function EditarLivro() {
   }
 
   return (
-    <div className="editar-livro">
+    <div className="app">
 
-      <header className="editar-livro-header">
+      <Sidebar />
 
-        <h1>Editar Livro</h1>
+      <main className="main">
 
-        <button
-          className="btn-voltar"
-          onClick={() => navigate("/livros")}
-        >
-          Voltar
-        </button>
+        <header className="topbar">
 
-      </header>
+          <h2>Editar livro</h2>
 
-      <main className="editar-livro-content">
+          <div className="top-icons">
 
-        <div className="editar-livro-card">
+            <Bell size={18} />
 
-          <div className="campo">
-
-            <label>Título do livro</label>
-
-            <input
-              type="text"
-              value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
-            />
+            <div className="avatar">
+              A
+            </div>
 
           </div>
 
-          <div className="campo">
+        </header>
 
-            <label>Autor</label>
-
-            <input
-              type="text"
-              value={autor}
-              onChange={(e) => setAutor(e.target.value)}
-            />
-
-          </div>
-
-          <div className="campo">
-
-            <label>Gênero</label>
-
-            <input
-              type="text"
-              value={genero}
-              onChange={(e) => setGenero(e.target.value)}
-            />
-
-          </div>
-
-          <div className="campo">
-
-            <label>Ano de publicação</label>
-
-            <input
-              type="number"
-              value={ano}
-              onChange={(e) => setAno(e.target.value)}
-            />
-
-          </div>
-
-          <div className="campo">
-
-            <label>Descrição</label>
-
-            <textarea
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-            ></textarea>
-
-          </div>
+        <section className="page-content">
 
           <button
-            className="btn-salvar"
-            onClick={salvarAlteracoes}
+            className="detail-back"
+            onClick={() =>
+              navigate(`/livros/${id}`)
+            }
           >
-            Salvar alterações
+            <ArrowLeft size={16} />
+            Voltar para o livro
           </button>
 
-        </div>
+          <div className="edit-page-header">
+
+            <div>
+              <span className="detail-label">
+                BIBLIOTECA
+              </span>
+
+              <h1>
+                Editar livro
+              </h1>
+
+              <p>
+                Atualize as informações do livro
+                cadastrado.
+              </p>
+            </div>
+
+          </div>
+
+          <form
+            className="edit-book-card"
+            onSubmit={salvarAlteracoes}
+          >
+
+            <div className="edit-form-section">
+
+              <div className="edit-section-title">
+                <h2>
+                  Informações do livro
+                </h2>
+
+                <p>
+                  Preencha os dados abaixo.
+                </p>
+              </div>
+
+              <label>
+                Título
+              </label>
+
+              <input
+                type="text"
+                value={titulo}
+                onChange={(e) =>
+                  setTitulo(e.target.value)
+                }
+                placeholder="Digite o título do livro"
+                required
+              />
+
+              <div className="edit-form-row">
+
+                <div className="edit-form-field">
+
+                  <label>
+                    Autor
+                  </label>
+
+                  <select
+                    value={autorId}
+                    onChange={(e) =>
+                      setAutorId(e.target.value)
+                    }
+                    required
+                  >
+
+                    <option value="">
+                      Selecione um autor
+                    </option>
+
+                    {autores.map((autor) => (
+
+                      <option
+                        key={autor.id}
+                        value={autor.id}
+                      >
+                        {autor.nome}
+                      </option>
+
+                    ))}
+
+                  </select>
+
+                </div>
+
+                <div className="edit-form-field">
+
+                  <label>
+                    Gênero
+                  </label>
+
+                  <select
+                    value={generoId}
+                    onChange={(e) =>
+                      setGeneroId(e.target.value)
+                    }
+                  >
+
+                    <option value="">
+                      Selecione um gênero
+                    </option>
+
+                    {generos.map((genero) => (
+
+                      <option
+                        key={genero.id}
+                        value={genero.id}
+                      >
+                        {genero.nome}
+                      </option>
+
+                    ))}
+
+                  </select>
+
+                </div>
+
+              </div>
+
+              <div className="edit-form-row">
+
+                <div className="edit-form-field">
+
+                  <label>
+                    Ano de publicação
+                  </label>
+
+                  <input
+                    type="number"
+                    value={anoPublicacao}
+                    onChange={(e) =>
+                      setAnoPublicacao(
+                        e.target.value
+                      )
+                    }
+                    placeholder="Ex.: 2024"
+                  />
+
+                </div>
+
+                <div className="edit-form-field">
+
+                  <label>
+                    Editora
+                  </label>
+
+                  <input
+                    type="text"
+                    value={editora}
+                    onChange={(e) =>
+                      setEditora(e.target.value)
+                    }
+                    placeholder="Nome da editora"
+                  />
+
+                </div>
+
+              </div>
+
+              <label>
+                Descrição
+              </label>
+
+              <textarea
+                value={descricao}
+                onChange={(e) =>
+                  setDescricao(e.target.value)
+                }
+                placeholder="Digite uma descrição para o livro..."
+              />
+
+            </div>
+
+            <div className="edit-form-footer">
+
+              <button
+                type="button"
+                className="edit-cancel"
+                onClick={() =>
+                  navigate(`/livros/${id}`)
+                }
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="submit"
+                className="edit-save"
+              >
+                <Save size={15} />
+                Salvar alterações
+              </button>
+
+            </div>
+
+          </form>
+
+        </section>
 
       </main>
 
     </div>
   );
 }
-
-export default EditarLivro;
-

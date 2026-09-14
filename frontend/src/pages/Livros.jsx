@@ -1,9 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Sidebar from "../components/Sidebar";
-
 import {
   Bell,
   Search,
@@ -12,7 +10,6 @@ import {
   Trash2,
   Eye
 } from "lucide-react";
-
 import "../index.css";
 
 export default function Livros() {
@@ -27,7 +24,9 @@ export default function Livros() {
 
   async function buscarLivros() {
     try {
-      const resposta = await fetch("http://localhost:3000/livros");
+      const resposta = await fetch(
+        "http://localhost:3000/livros"
+      );
 
       if (!resposta.ok) {
         throw new Error("Erro ao buscar livros");
@@ -42,8 +41,37 @@ export default function Livros() {
   }
 
   const livrosFiltrados = livros.filter((livro) =>
-    livro.titulo.toLowerCase().includes(busca.toLowerCase())
+    livro.titulo
+      .toLowerCase()
+      .includes(busca.toLowerCase())
   );
+
+  async function excluirLivro(id) {
+    const confirmar = window.confirm(
+      "Tem certeza que deseja excluir este livro?"
+    );
+
+    if (!confirmar) {
+      return;
+    }
+
+    try {
+      const resposta = await fetch(
+        `http://localhost:3000/livros/${id}`,
+        {
+          method: "DELETE"
+        }
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao excluir livro");
+      }
+
+      buscarLivros();
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  }
 
   return (
     <div className="app">
@@ -53,7 +81,6 @@ export default function Livros() {
       <main className="main">
 
         <header className="topbar">
-
           <h2>Livros</h2>
 
           <div className="top-icons">
@@ -63,36 +90,53 @@ export default function Livros() {
               A
             </div>
           </div>
-
         </header>
 
         <section className="page-content">
 
-          <div className="page-actions">
+          <div className="books-header">
 
-            <div className="search">
+            <div>
+              <h1 className="books-title">
+                Minha biblioteca
+              </h1>
 
-              <Search size={15} />
-
-              <input
-                placeholder="Buscar livro..."
-                value={busca}
-                onChange={(e) => setBusca(e.target.value)}
-              />
-
+              <p className="books-subtitle">
+                Consulte e gerencie os livros cadastrados.
+              </p>
             </div>
-
-            <button className="filter">
-              ⚱ Filtros
-            </button>
 
             <button
               className="new-button"
               onClick={() => navigate("/livros/novo")}
             >
-              <Plus size={15} />
+              <Plus size={16} />
               Novo livro
             </button>
+
+          </div>
+
+          <div className="books-toolbar">
+
+            <div className="search">
+              <Search size={16} />
+
+              <input
+                type="text"
+                placeholder="Buscar livro..."
+                value={busca}
+                onChange={(e) =>
+                  setBusca(e.target.value)
+                }
+              />
+            </div>
+
+            <span className="books-count">
+              {livrosFiltrados.length}{" "}
+              {livrosFiltrados.length === 1
+                ? "livro"
+                : "livros"}
+            </span>
 
           </div>
 
@@ -109,53 +153,88 @@ export default function Livros() {
 
                   <div
                     className="mini-cover"
-                    onClick={() => navigate(`/livros/${livro.id}`)}
-                  ></div>
+                    onClick={() =>
+                      navigate(`/livros/${livro.id}`)
+                    }
+                  >
+
+                    {livro.capa ? (
+                      <img
+                        src={`http://localhost:3000${livro.capa}`}
+                        alt={livro.titulo}
+                      />
+                    ) : (
+                      <span>📖</span>
+                    )}
+
+                  </div>
 
                   <div
                     className="book-info"
-                    onClick={() => navigate(`/livros/${livro.id}`)}
+                    onClick={() =>
+                      navigate(`/livros/${livro.id}`)
+                    }
                   >
 
-                    <h3>{livro.titulo}</h3>
+                    <h3>
+                      {livro.titulo}
+                    </h3>
 
-                    <p>{livro.autor}</p>
+                    <p>
+                      {livro.autor ||
+                        "Autor não informado"}
+                    </p>
 
                     <small>
-                      {livro.genero} · {livro.ano}
+                      {livro.genero ||
+                        "Sem gênero"}
+
+                      {" · "}
+
+                      {livro.ano_publicacao ||
+                        "Ano não informado"}
+
+                      {livro.editora &&
+                        ` · ${livro.editora}`}
                     </small>
 
                   </div>
 
-                  <span
-                    className={
-                      livro.disponivel
-                        ? "status available"
-                        : "status borrowed"
-                    }
-                  >
-                    {livro.disponivel
-                      ? "Disponível"
-                      : "Emprestado"}
-                  </span>
-
                   <div className="actions">
 
-                    <Edit3
-                      size={14}
+                    <button
+                      className="book-action edit"
+                      title="Editar livro"
                       onClick={() =>
-                        navigate(`/livros/${livro.id}/editar`)
+                        navigate(
+                          `/livros/${livro.id}/editar`
+                        )
                       }
-                    />
+                    >
+                      <Edit3 size={15} />
+                    </button>
 
-                    <Eye
-                      size={14}
+                    <button
+                      className="book-action view"
+                      title="Ver livro"
                       onClick={() =>
-                        navigate(`/livros/${livro.id}`)
+                        navigate(
+                          `/livros/${livro.id}`
+                        )
                       }
-                    />
+                    >
+                      <Eye size={15} />
+                    </button>
 
-                    <Trash2 size={14} />
+                    <button
+                      className="book-action delete"
+                      title="Excluir livro"
+                      onClick={() =>
+                        excluirLivro(livro.id)
+                      }
+                    >
+                      <Trash2 size={15} />
+                    </button>
 
                   </div>
 
@@ -165,7 +244,17 @@ export default function Livros() {
 
             ) : (
 
-              <p>Nenhum livro encontrado.</p>
+              <div className="empty-books">
+                <span>📚</span>
+
+                <h3>
+                  Nenhum livro encontrado
+                </h3>
+
+                <p>
+                  Tente buscar por outro título.
+                </p>
+              </div>
 
             )}
 

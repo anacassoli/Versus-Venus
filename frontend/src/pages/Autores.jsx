@@ -1,9 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Sidebar from "../components/Sidebar";
-
 import {
   Bell,
   Search,
@@ -12,7 +10,6 @@ import {
   Eye,
   Trash2
 } from "lucide-react";
-
 import "../index.css";
 
 export default function Autores() {
@@ -41,6 +38,33 @@ export default function Autores() {
     }
   }
 
+  async function excluirAutor(id) {
+    const confirmar = window.confirm(
+      "Tem certeza que deseja excluir este autor?"
+    );
+
+    if (!confirmar) {
+      return;
+    }
+
+    try {
+      const resposta = await fetch(
+        `http://localhost:3000/autores/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao excluir autor");
+      }
+
+      buscarAutores();
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  }
+
   const autoresFiltrados = autores.filter((autor) =>
     autor.nome.toLowerCase().includes(busca.toLowerCase())
   );
@@ -57,11 +81,13 @@ export default function Autores() {
           <h2>Autores</h2>
 
           <div className="top-icons">
+
             <Bell size={18} />
 
             <div className="avatar">
               A
             </div>
+
           </div>
 
         </header>
@@ -98,15 +124,35 @@ export default function Autores() {
 
               autoresFiltrados.map((autor) => (
 
-                <div className="author-row" key={autor.id}>
+                <div
+                  className="author-row"
+                  key={autor.id}
+                >
 
                   <div className="author-photo">
-                    {autor.nome?.charAt(0).toUpperCase()}
+
+                    {autor.foto ? (
+
+                      <img
+                        src={`http://localhost:3000${autor.foto}`}
+                        alt={autor.nome}
+                      />
+
+                    ) : (
+
+                      <span>
+                        {autor.nome?.charAt(0).toUpperCase()}
+                      </span>
+
+                    )}
+
                   </div>
 
                   <div>
 
-                    <h3>{autor.nome}</h3>
+                    <h3>
+                      {autor.nome}
+                    </h3>
 
                     <p>
                       {autor.ano_nascimento || "--"} ·{" "}
@@ -117,11 +163,23 @@ export default function Autores() {
 
                   <div className="actions">
 
-                    <Edit3 size={14} />
+                    <Edit3
+  size={14}
+  onClick={() => navigate(`/autores/${autor.id}/editar`)}
+  style={{ cursor: "pointer" }}
+/>
 
-                    <Eye size={14} />
+                    <Eye
+  size={14}
+  onClick={() => navigate(`/autores/${autor.id}`)}
+  style={{ cursor: "pointer" }}
+/>
 
-                    <Trash2 size={14} />
+                    <Trash2
+                      size={14}
+                      onClick={() => excluirAutor(autor.id)}
+                      style={{ cursor: "pointer" }}
+                    />
 
                   </div>
 
@@ -131,7 +189,9 @@ export default function Autores() {
 
             ) : (
 
-              <p>Nenhum autor encontrado.</p>
+              <p>
+                Nenhum autor encontrado.
+              </p>
 
             )}
 

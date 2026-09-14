@@ -1,37 +1,100 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import "../index.css";
 
 export default function NovoLivro() {
+
   const navigate = useNavigate();
 
+  const [autores, setAutores] = useState([]);
+  const [generos, setGeneros] = useState([]);
+
   const [titulo, setTitulo] = useState("");
-  const [autor, setAutor] = useState("");
-  const [genero, setGenero] = useState("");
-  const [ano, setAno] = useState("");
+  const [autorId, setAutorId] = useState("");
+  const [generoId, setGeneroId] = useState("");
+  const [anoPublicacao, setAnoPublicacao] = useState("");
   const [editora, setEditora] = useState("");
   const [descricao, setDescricao] = useState("");
+  const [capa, setCapa] = useState(null);
+
+  useEffect(() => {
+    buscarAutores();
+    buscarGeneros();
+  }, []);
+
+  async function buscarAutores() {
+
+    try {
+
+      const resposta = await fetch(
+        "http://localhost:3000/autores"
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar autores");
+      }
+
+      const dados = await resposta.json();
+
+      setAutores(dados);
+
+    } catch (error) {
+
+      console.error("Erro:", error);
+
+    }
+  }
+
+  async function buscarGeneros() {
+
+    try {
+
+      const resposta = await fetch(
+        "http://localhost:3000/generos"
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar gêneros");
+      }
+
+      const dados = await resposta.json();
+
+      setGeneros(dados);
+
+    } catch (error) {
+
+      console.error("Erro:", error);
+
+    }
+  }
 
   async function salvarLivro(event) {
+
     event.preventDefault();
 
     try {
-      const resposta = await fetch("http://localhost:3000/livros", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          titulo,
-          autor,
-          genero,
-          ano,
-          editora,
-          descricao,
-        }),
-      });
+
+      const dados = new FormData();
+
+      dados.append("titulo", titulo);
+      dados.append("autor_id", autorId);
+      dados.append("genero_id", generoId);
+      dados.append("ano_publicacao", anoPublicacao);
+      dados.append("editora", editora);
+      dados.append("descricao", descricao);
+
+      if (capa) {
+        dados.append("capa", capa);
+      }
+
+      const resposta = await fetch(
+        "http://localhost:3000/livros",
+        {
+          method: "POST",
+          body: dados
+        }
+      );
 
       if (!resposta.ok) {
         throw new Error("Erro ao cadastrar livro");
@@ -40,7 +103,9 @@ export default function NovoLivro() {
       navigate("/livros");
 
     } catch (error) {
+
       console.error("Erro:", error);
+
     }
   }
 
@@ -61,10 +126,20 @@ export default function NovoLivro() {
         <div className="upload-box">
 
           <div className="upload-icon">
-            ☁
+            📖
           </div>
 
-          <p>Adicionar capa</p>
+          <p>
+            {capa ? capa.name : "Adicionar capa"}
+          </p>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) =>
+              setCapa(e.target.files[0])
+            }
+          />
 
         </div>
 
@@ -76,56 +151,100 @@ export default function NovoLivro() {
           <label>Título</label>
 
           <input
+            type="text"
             placeholder="Digite o título do livro"
             value={titulo}
-            onChange={(e) => setTitulo(e.target.value)}
+            onChange={(e) =>
+              setTitulo(e.target.value)
+            }
             required
           />
 
           <label>Autor</label>
 
-          <input
-            placeholder="Digite o autor"
-            value={autor}
-            onChange={(e) => setAutor(e.target.value)}
+          <select
+            value={autorId}
+            onChange={(e) =>
+              setAutorId(e.target.value)
+            }
             required
-          />
+          >
+
+            <option value="">
+              Selecione um autor
+            </option>
+
+            {autores.map((autor) => (
+
+              <option
+                key={autor.id}
+                value={autor.id}
+              >
+                {autor.nome}
+              </option>
+
+            ))}
+
+          </select>
 
           <label>Gênero</label>
 
-          <input
-            placeholder="Digite o gênero"
-            value={genero}
-            onChange={(e) => setGenero(e.target.value)}
-            required
-          />
+          <select
+            value={generoId}
+            onChange={(e) =>
+              setGeneroId(e.target.value)
+            }
+          >
+
+            <option value="">
+              Selecione um gênero
+            </option>
+
+            {generos.map((genero) => (
+
+              <option
+                key={genero.id}
+                value={genero.id}
+              >
+                {genero.nome}
+              </option>
+
+            ))}
+
+          </select>
 
           <label>Ano de publicação</label>
 
           <input
             type="number"
-            placeholder="Ex: 2000"
-            value={ano}
-            onChange={(e) => setAno(e.target.value)}
-            required
+            placeholder="Ex: 2024"
+            value={anoPublicacao}
+            onChange={(e) =>
+              setAnoPublicacao(e.target.value)
+            }
           />
 
           <label>Editora</label>
 
           <input
+            type="text"
             placeholder="Digite a editora"
             value={editora}
-            onChange={(e) => setEditora(e.target.value)}
-            required
+            onChange={(e) =>
+              setEditora(e.target.value)
+            }
           />
 
           <label>Descrição</label>
 
           <textarea
-            placeholder="Fale sobre o livro..."
+            placeholder="Digite uma descrição do livro"
             value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-          ></textarea>
+            onChange={(e) =>
+              setDescricao(e.target.value)
+            }
+            rows="5"
+          />
 
           <div className="form-buttons">
 

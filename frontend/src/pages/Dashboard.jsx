@@ -1,11 +1,47 @@
 
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-
-import { Bell, User } from "lucide-react";
-
+import {
+  Bell,
+  BookOpen,
+  Users,
+  Tags,
+  UserRound
+} from "lucide-react";
 import "../index.css";
 
 export default function Dashboard() {
+
+  const [dados, setDados] = useState({
+    livros: 0,
+    autores: 0,
+    generos: 0,
+    usuarios: 0,
+  });
+
+  useEffect(() => {
+    buscarDados();
+  }, []);
+
+  async function buscarDados() {
+    try {
+      const resposta = await fetch(
+        "http://localhost:3000/dashboard"
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar dados");
+      }
+
+      const resultado = await resposta.json();
+
+      setDados(resultado);
+
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  }
+
   return (
     <div className="app">
 
@@ -15,74 +51,110 @@ export default function Dashboard() {
 
         <header className="topbar">
 
-          <div></div>
+          <h2>Início</h2>
 
           <div className="top-icons">
+
             <Bell size={18} />
-            <div className="avatar">A</div>
+
+            <div className="avatar">
+              A
+            </div>
+
           </div>
 
         </header>
 
-        <section className="dashboard">
+        <section className="page-content">
 
-          <div className="metrics">
+          <h1 className="dashboard-title">
+            Olá! 👋
+          </h1>
 
-            <div className="metric">
-              <strong>--</strong>
-              <span>Livros</span>
-              <BookIcon />
-            </div>
+          <p className="dashboard-subtitle">
+            Bem-vindo ao Verso & Vênus.
+          </p>
 
-            <div className="metric">
-              <strong>--</strong>
-              <span>Autores</span>
-              <User size={40} />
-            </div>
+          <div className="dashboard-cards">
 
-            <div className="metric">
-              <strong>--</strong>
-              <span>Usuários</span>
-              <User size={40} />
-            </div>
+            <div className="dashboard-card">
 
-            <div className="metric">
-              <strong>--</strong>
-              <span>Disponíveis</span>
-              <BookIcon />
-            </div>
-
-          </div>
-
-          <h3>Livros adicionados recentemente</h3>
-
-          <div className="recent-books">
-
-            <div className="recent-book">
-              <div className="book-cover"></div>
+              <div className="dashboard-icon">
+                <BookOpen size={22} />
+              </div>
 
               <div>
-                <h3>Carregando...</h3>
-                <p>--</p>
+
+                <span>
+                  Livros
+                </span>
+
+                <strong>
+                  {dados.livros}
+                </strong>
+
               </div>
+
             </div>
 
-            <div className="recent-book">
-              <div className="book-cover"></div>
+            <div className="dashboard-card">
+
+              <div className="dashboard-icon">
+                <Users size={22} />
+              </div>
 
               <div>
-                <h3>Carregando...</h3>
-                <p>--</p>
+
+                <span>
+                  Autores
+                </span>
+
+                <strong>
+                  {dados.autores}
+                </strong>
+
               </div>
+
             </div>
 
-            <div className="recent-book">
-              <div className="book-cover"></div>
+            <div className="dashboard-card">
+
+              <div className="dashboard-icon">
+                <Tags size={22} />
+              </div>
 
               <div>
-                <h3>Carregando...</h3>
-                <p>--</p>
+
+                <span>
+                  Gêneros
+                </span>
+
+                <strong>
+                  {dados.generos}
+                </strong>
+
               </div>
+
+            </div>
+
+            <div className="dashboard-card">
+
+              <div className="dashboard-icon">
+                <UserRound size={22} />
+              </div>
+
+              <div>
+
+                <span>
+                  Usuários
+                </span>
+
+                <strong>
+                  {dados.usuarios}
+                </strong>
+
+              </div>
+
             </div>
 
           </div>
@@ -93,8 +165,4 @@ export default function Dashboard() {
 
     </div>
   );
-}
-
-function BookIcon() {
-  return <span className="book-icon">📖</span>;
 }
