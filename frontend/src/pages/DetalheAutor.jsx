@@ -33,63 +33,75 @@ export default function DetalheAutor() {
 
   if (!autor) {
     return (
-      <div className="book-detail">
+      <div className="autor-detail-page">
         <p>Carregando autor...</p>
       </div>
     );
   }
 
   return (
-    <div className="book-detail">
+    <div className="autor-detail-page">
 
       <button
-        className="back"
+        className="autor-back"
         onClick={() => navigate("/autores")}
       >
         ← voltar
       </button>
 
-      <div className="detail-content">
+      <div className="autor-detail-content">
 
-        <div className="detail-cover">
+        <div className="autor-detail-cover">
 
           {autor.foto ? (
-
             <img
               src={`http://localhost:3000${autor.foto}`}
               alt={autor.nome}
             />
-
           ) : (
-
-            <div className="cover-placeholder">
+            <div className="autor-cover-placeholder">
               {autor.nome}
             </div>
-
           )}
 
         </div>
 
-        <div className="detail-text">
+        <div className="autor-detail-text">
 
-          <h1>{autor.nome}</h1>
+          <span className="autor-detail-label">
+            AUTOR
+          </span>
 
-          <p>
+          <h1>
+            {autor.nome}
+          </h1>
+
+          <p className="autor-biografia">
             {autor.biografia ||
               "Biografia não informada."}
           </p>
 
-          <div className="detail-box">
+          <div className="autor-detail-box">
 
-            <p>
-              <strong>Nacionalidade</strong>
-              {autor.nacionalidade || "--"}
-            </p>
+            <div>
+              <strong>
+                Nacionalidade
+              </strong>
 
-            <p>
-              <strong>Ano de nascimento</strong>
-              {autor.ano_nascimento || "--"}
-            </p>
+              <span>
+                {autor.nacionalidade || "--"}
+              </span>
+            </div>
+
+            <div>
+              <strong>
+                Ano de nascimento
+              </strong>
+
+              <span>
+                {autor.ano_nascimento || "--"}
+              </span>
+            </div>
 
           </div>
 

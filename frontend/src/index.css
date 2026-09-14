@@ -1,7 +1,7 @@
 
-/* =========================
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 * {
   margin: 0;
@@ -23,11 +23,12 @@ select {
 }
 
 
-/* =========================
+/* =========================================================
    LOGIN / CADASTRO
-========================= */
+========================================================= */
 
-.auth-page {
+.auth-page,
+.login-page {
   position: relative;
   min-height: 100vh;
 
@@ -49,7 +50,8 @@ select {
   padding: 30px;
 }
 
-.auth-page::before {
+.auth-page::before,
+.login-page::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -58,6 +60,9 @@ select {
 
   pointer-events: none;
 }
+
+
+/* ---------- Auth antiga ---------- */
 
 .auth-content {
   position: relative;
@@ -93,7 +98,6 @@ select {
   padding: 32px 40px;
 
   background: #fff9e9;
-
   border-radius: 25px;
 
   box-shadow: 0 8px 18px rgba(50, 30, 15, 0.2);
@@ -130,7 +134,6 @@ select {
 
   border: none;
   background: #e9e5db;
-
   border-radius: 10px;
 
   padding: 12px 13px;
@@ -177,9 +180,7 @@ select {
 
 .auth-link span {
   color: #8c1624;
-
   cursor: pointer;
-
   font-weight: bold;
 }
 
@@ -198,9 +199,139 @@ select {
 }
 
 
-/* =========================
+/* ---------- Login atual ---------- */
+
+.login-box {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 390px;
+
+  padding: 32px 40px;
+
+  background: #fff9e9;
+  border-radius: 25px;
+
+  box-shadow: 0 8px 18px rgba(50, 30, 15, 0.2);
+
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+}
+
+.login-box h1 {
+  color: #760d1b;
+
+  font-size: 38px;
+  font-weight: normal;
+  font-style: italic;
+
+  text-align: center;
+
+  margin-bottom: 6px;
+}
+
+.login-subtitle {
+  color: #76202b;
+
+  font-size: 16px;
+
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+.login-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-box label {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.login-box input {
+  width: 100%;
+
+  border: none;
+  background: #e9e5db;
+
+  border-radius: 10px;
+
+  padding: 12px 13px;
+  margin-bottom: 14px;
+
+  outline: none;
+
+  font-size: 14px;
+}
+
+.login-box input:focus {
+  box-shadow: 0 0 0 2px #ead18a;
+}
+
+.login-button {
+  width: 100%;
+
+  border: none;
+  border-radius: 12px;
+
+  padding: 12px;
+
+  background: #ead18a;
+  color: #4b3328;
+
+  cursor: pointer;
+
+  margin-top: 7px;
+
+  font-size: 15px;
+}
+
+.login-button:hover {
+  background: #dfc675;
+}
+
+.login-register {
+  text-align: center;
+
+  font-size: 13px;
+
+  margin-top: 15px;
+}
+
+.login-register button {
+  border: none;
+  background: transparent;
+
+  color: #8c1624;
+
+  cursor: pointer;
+
+  font-weight: bold;
+  font-size: 13px;
+
+  margin-left: 4px;
+}
+
+.login-error {
+  color: #b51e31;
+
+  font-size: 13px;
+
+  text-align: center;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+/* =========================================================
    ESTRUTURA INTERNA
-========================= */
+========================================================= */
 
 .app {
   min-height: 100vh;
@@ -211,9 +342,9 @@ select {
 }
 
 
-/* =========================
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar {
   width: 125px;
@@ -256,6 +387,7 @@ select {
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -293,9 +425,9 @@ select {
 }
 
 
-/* =========================
+/* =========================================================
    CONTEÚDO PRINCIPAL
-========================= */
+========================================================= */
 
 .main {
   flex: 1;
@@ -360,9 +492,9 @@ select {
 }
 
 
-/* =========================
+/* =========================================================
    DASHBOARD
-========================= */
+========================================================= */
 
 .dashboard {
   width: 100%;
@@ -371,6 +503,25 @@ select {
   margin: 0 auto;
 
   padding: 40px 50px;
+}
+
+.dashboard-title {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 28px;
+  font-weight: normal;
+
+  color: #4b3328;
+
+  margin-bottom: 5px;
+}
+
+.dashboard-subtitle {
+  font-size: 14px;
+
+  color: #806b5d;
+
+  margin-bottom: 25px;
 }
 
 .metrics {
@@ -421,76 +572,6 @@ select {
   font-size: 42px;
 
   margin-top: 5px;
-}
-
-.recent-books {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 10px;
-}
-
-.recent-book {
-  width: 100%;
-  min-height: 70px;
-
-  background: #fff9e7;
-
-  border-radius: 8px;
-
-  padding: 10px 15px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 15px;
-
-  box-shadow: 0 2px 4px rgba(80, 50, 20, 0.15);
-}
-
-.book-cover {
-  width: 42px;
-  height: 52px;
-
-  background: #704327;
-
-  border-radius: 4px;
-
-  flex-shrink: 0;
-}
-
-.recent-book h3 {
-  font-size: 17px;
-
-  font-weight: normal;
-}
-
-.recent-book p {
-  font-size: 12px;
-
-  margin-top: 3px;
-}
-
-.dashboard-title {
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 28px;
-
-  font-weight: normal;
-
-  color: #4b3328;
-
-  margin-bottom: 5px;
-}
-
-.dashboard-subtitle {
-  font-size: 14px;
-
-  color: #806b5d;
-
-  margin-bottom: 25px;
 }
 
 .dashboard-cards {
@@ -551,16 +632,108 @@ select {
   display: block;
 
   font-size: 25px;
-
   font-weight: normal;
 
   color: #4b3328;
 }
 
+.recent-books {
+  width: 100%;
 
-/* =========================
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.recent-book {
+  width: 100%;
+  min-height: 70px;
+
+  background: #fff9e7;
+
+  border-radius: 8px;
+
+  padding: 10px 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  box-shadow: 0 2px 4px rgba(80, 50, 20, 0.15);
+}
+
+.book-cover {
+  width: 42px;
+  height: 52px;
+
+  background: #704327;
+
+  border-radius: 4px;
+
+  flex-shrink: 0;
+}
+
+.recent-book h3 {
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.recent-book p {
+  font-size: 12px;
+
+  margin-top: 3px;
+}
+
+
+/* =========================================================
    LIVROS
-========================= */
+========================================================= */
+
+.books-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+.books-title {
+  color: #760b19;
+
+  font-size: 31px;
+  font-weight: normal;
+
+  margin-bottom: 5px;
+}
+
+.books-subtitle {
+  color: #806b5d;
+
+  font-size: 14px;
+}
+
+.books-toolbar {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+}
+
+.books-count {
+  color: #806b5d;
+
+  font-size: 13px;
+
+  background: #eee4c9;
+
+  padding: 9px 13px;
+
+  border-radius: 8px;
+}
 
 .page-actions {
   width: 100%;
@@ -627,6 +800,7 @@ select {
   gap: 7px;
 
   background: #b51e31;
+
   color: white;
 
   border: none;
@@ -644,42 +818,69 @@ select {
   background: #8f1827;
 }
 
+
+/* ---------- Lista de livros ---------- */
+
 .book-list {
   width: 100%;
 
   display: flex;
   flex-direction: column;
 
-  gap: 9px;
+  gap: 12px;
 }
 
 .book-row {
   width: 100%;
-  min-height: 78px;
+
+  min-height: 105px;
 
   background: #fff9e7;
 
-  border-radius: 8px;
+  border: 1px solid #eee2bd;
 
-  padding: 10px 15px;
+  border-radius: 13px;
+
+  padding: 14px 17px;
 
   display: flex;
   align-items: center;
 
-  gap: 15px;
+  gap: 18px;
 
-  box-shadow: 0 1px 3px rgba(80, 50, 20, 0.15);
+  box-shadow: 0 3px 8px rgba(80, 50, 20, 0.08);
+
+  transition: 0.2s;
 }
 
-.mini-cover {
-  width: 50px;
-  height: 70px;
+.book-row:hover {
+  transform: translateY(-2px);
 
-  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(80, 50, 20, 0.13);
+}
+
+
+/* ---------- Capa ---------- */
+
+.mini-cover {
+  width: 62px;
+  height: 82px;
 
   flex-shrink: 0;
 
-  border-radius: 4px;
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  background: #e3dbc9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 7px rgba(60, 40, 20, 0.15);
 }
 
 .mini-cover img {
@@ -688,6 +889,13 @@ select {
 
   object-fit: cover;
 }
+
+.mini-cover span {
+  font-size: 25px;
+}
+
+
+/* ---------- Informações ---------- */
 
 .book-info {
   flex: 1;
@@ -698,17 +906,88 @@ select {
 }
 
 .book-info h3 {
-  font-size: 16px;
+  color: #4b3328;
+
+  font-size: 18px;
 
   font-weight: normal;
 
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 
-.book-info p,
-.book-info small {
-  font-size: 11px;
+.book-info p {
+  color: #760b19;
+
+  font-size: 13px;
+
+  margin-bottom: 6px;
 }
+
+.book-info small {
+  color: #806b5d;
+
+  font-size: 12px;
+}
+
+
+/* ---------- Ações ---------- */
+
+.actions {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.actions svg {
+  cursor: pointer;
+}
+
+.book-action {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.book-action.edit {
+  background: #eee3bd;
+  color: #760b19;
+}
+
+.book-action.edit:hover {
+  background: #dfd0a3;
+}
+
+.book-action.view {
+  background: #e5e0d4;
+  color: #4b3328;
+}
+
+.book-action.view:hover {
+  background: #d8d0bf;
+}
+
+.book-action.delete {
+  background: #f5dddd;
+  color: #a51b2c;
+}
+
+.book-action.delete:hover {
+  background: #ecc8cc;
+}
+
+
+/* ---------- Status ---------- */
 
 .status {
   font-size: 12px;
@@ -724,22 +1003,48 @@ select {
   color: #df9238;
 }
 
-.actions {
-  display: flex;
 
-  gap: 12px;
+/* ---------- Nenhum livro ---------- */
 
-  align-items: center;
+.empty-books {
+  background: #fff9e7;
+
+  border-radius: 14px;
+
+  padding: 55px 20px;
+
+  text-align: center;
+
+  border: 1px solid #eee2bd;
 }
 
-.actions svg {
-  cursor: pointer;
+.empty-books span {
+  display: block;
+
+  font-size: 42px;
+
+  margin-bottom: 12px;
+}
+
+.empty-books h3 {
+  color: #760b19;
+
+  font-size: 18px;
+  font-weight: normal;
+
+  margin-bottom: 5px;
+}
+
+.empty-books p {
+  color: #806b5d;
+
+  font-size: 13px;
 }
 
 
-/* =========================
+/* =========================================================
    AUTORES
-========================= */
+========================================================= */
 
 .author-search {
   width: 350px;
@@ -756,6 +1061,7 @@ select {
 
 .author-row {
   width: 100%;
+
   min-height: 75px;
 
   background: #fff9e7;
@@ -827,17 +1133,253 @@ select {
 }
 
 
-/* =========================
+/* =========================================================
    DETALHE / VER LIVRO
-========================= */
+========================================================= */
+
+.detail-back {
+  border: none;
+
+  background: transparent;
+
+  color: #760b19;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  margin-bottom: 22px;
+
+  padding: 5px 0;
+}
+
+.detail-back:hover {
+  color: #a51b2c;
+}
 
 .book-detail {
-  min-height: 100vh;
+  width: 100%;
 
-  padding: 40px 50px;
+  max-width: 1050px;
 
-  background: #f5e9bd;
+  margin: 0 auto;
+
+  background: #fff9e7;
+
+  border-radius: 18px;
+
+  padding: 42px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 45px;
+
+  box-shadow: 0 5px 15px rgba(80, 50, 20, 0.12);
+
+  border: 1px solid #eee2bd;
 }
+
+
+/* ---------- Capa ---------- */
+
+.book-detail-cover {
+  width: 240px;
+
+  flex-shrink: 0;
+}
+
+.book-detail-cover img,
+.book-cover-placeholder {
+  width: 240px;
+  height: 355px;
+
+  border-radius: 10px;
+
+  object-fit: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e4ddce;
+
+  box-shadow: 0 6px 14px rgba(60, 40, 20, 0.18);
+}
+
+.book-cover-placeholder {
+  color: #760b19;
+
+  font-size: 45px;
+}
+
+
+/* ---------- Informações ---------- */
+
+.book-detail-info {
+  flex: 1;
+
+  padding-top: 4px;
+}
+
+.detail-label {
+  display: block;
+
+  color: #b08a48;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 9px;
+}
+
+.book-detail-info h1 {
+  color: #760b19;
+
+  font-size: 34px;
+
+  line-height: 1.2;
+
+  font-weight: normal;
+  font-style: italic;
+
+  margin-bottom: 8px;
+}
+
+.book-author {
+  color: #806b5d;
+
+  font-size: 15px;
+
+  margin-bottom: 25px;
+}
+
+
+/* ---------- Caixa de informações ---------- */
+
+.book-info-box {
+  background: #f1e6c4;
+
+  border-radius: 11px;
+
+  padding: 17px 19px;
+
+  margin-bottom: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.book-info-box div {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.book-info-box span {
+  color: #806b5d;
+
+  font-size: 13px;
+}
+
+.book-info-box strong {
+  color: #760b19;
+
+  font-size: 13px;
+
+  font-weight: normal;
+
+  text-align: right;
+}
+
+
+/* ---------- Descrição ---------- */
+
+.book-description {
+  border-top: 1px solid #eadfbe;
+
+  padding-top: 20px;
+}
+
+.book-description h3 {
+  color: #4b3328;
+
+  font-size: 17px;
+
+  font-weight: normal;
+
+  margin-bottom: 8px;
+}
+
+.book-description p {
+  color: #806b5d;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+
+/* ---------- Botões ---------- */
+
+.detail-actions {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 27px;
+}
+
+.detail-actions button {
+  border: none;
+
+  border-radius: 9px;
+
+  padding: 11px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+}
+
+.back-button {
+  background: #e4dfd1;
+
+  color: #4b3328;
+}
+
+.back-button:hover {
+  background: #d8d1bf;
+}
+
+.edit-button {
+  background: #760b19;
+
+  color: white;
+}
+
+.edit-button:hover {
+  background: #5f0914;
+}
+
+
+/* ---------- Classes antigas de detalhe ---------- */
 
 .back {
   border: none;
@@ -861,6 +1403,7 @@ select {
 
 .detail-content {
   width: 100%;
+
   max-width: 1000px;
 
   min-height: 480px;
@@ -881,11 +1424,6 @@ select {
 
   box-shadow: 0 4px 12px rgba(80, 50, 20, 0.14);
 }
-
-
-/* =========================
-   CAPA
-========================= */
 
 .detail-cover {
   width: 230px;
@@ -917,7 +1455,6 @@ select {
   color: #760b19;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -929,11 +1466,6 @@ select {
 
   box-shadow: 0 4px 10px rgba(60, 40, 20, 0.12);
 }
-
-
-/* =========================
-   INFORMAÇÕES
-========================= */
 
 .detail-text {
   flex: 1;
@@ -964,11 +1496,6 @@ select {
 
   margin-bottom: 18px;
 }
-
-
-/* =========================
-   INFORMAÇÕES DO LIVRO
-========================= */
 
 .detail-box {
   width: 100%;
@@ -1004,11 +1531,6 @@ select {
   color: #760b19;
 }
 
-
-/* =========================
-   ESTRELAS
-========================= */
-
 .stars {
   margin-top: 20px;
 
@@ -1020,54 +1542,9 @@ select {
 }
 
 
-/* =========================
-   BOTÕES DO DETALHE
-========================= */
-
-.detail-actions {
-  display: flex;
-
-  gap: 12px;
-
-  margin-top: 25px;
-}
-
-.detail-actions button {
-  border: none;
-
-  border-radius: 9px;
-
-  padding: 11px 22px;
-
-  cursor: pointer;
-
-  font-size: 13px;
-}
-
-.back-button {
-  background: #e4dfd1;
-
-  color: #4b3328;
-}
-
-.back-button:hover {
-  background: #d8d1bf;
-}
-
-.edit-button {
-  background: #760b19;
-
-  color: white;
-}
-
-.edit-button:hover {
-  background: #5f0914;
-}
-
-
-/* =========================
+/* =========================================================
    NOVO LIVRO / NOVO AUTOR
-========================= */
+========================================================= */
 
 .new-book-page {
   min-height: 100vh;
@@ -1088,11 +1565,6 @@ select {
 
   margin-bottom: 35px;
 }
-
-
-/* =========================
-   ÁREA PRINCIPAL DO FORMULÁRIO
-========================= */
 
 .new-book-content {
   width: 100%;
@@ -1117,9 +1589,7 @@ select {
 }
 
 
-/* =========================
-   ÁREA DA FOTO / CAPA
-========================= */
+/* ---------- Upload ---------- */
 
 .upload-box {
   width: 220px;
@@ -1136,7 +1606,6 @@ select {
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   flex-shrink: 0;
@@ -1190,15 +1659,12 @@ select {
 }
 
 
-/* =========================
-   FORMULÁRIO
-========================= */
+/* ---------- Formulário ---------- */
 
 .book-form {
   flex: 1;
 
   display: flex;
-
   flex-direction: column;
 }
 
@@ -1260,9 +1726,7 @@ select {
 }
 
 
-/* =========================
-   BOTÕES
-========================= */
+/* ---------- Botões ---------- */
 
 .form-buttons {
   display: flex;
@@ -1312,9 +1776,9 @@ select {
 }
 
 
-/* =========================
+/* =========================================================
    EDITAR LIVRO
-========================= */
+========================================================= */
 
 .edit-book-page {
   min-height: 100vh;
@@ -1358,11 +1822,6 @@ select {
   box-shadow: 0 4px 12px rgba(80, 50, 20, 0.14);
 }
 
-
-/* =========================
-   CAPA DO LIVRO EDITADO
-========================= */
-
 .edit-cover {
   width: 220px;
   height: 280px;
@@ -1378,7 +1837,6 @@ select {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   overflow: hidden;
@@ -1402,15 +1860,12 @@ select {
 }
 
 
-/* =========================
-   FORMULÁRIO DE EDIÇÃO
-========================= */
+/* ---------- Formulário antigo ---------- */
 
 .edit-book-form {
   flex: 1;
 
   display: flex;
-
   flex-direction: column;
 }
 
@@ -1448,11 +1903,6 @@ select {
   transition: 0.2s;
 }
 
-.edit-book-form input::placeholder,
-.edit-book-form textarea::placeholder {
-  color: #9a9084;
-}
-
 .edit-book-form input:focus,
 .edit-book-form textarea:focus,
 .edit-book-form select:focus {
@@ -1468,11 +1918,6 @@ select {
 
   resize: vertical;
 }
-
-
-/* =========================
-   BOTÕES DE EDIÇÃO
-========================= */
 
 .edit-form-buttons {
   display: flex;
@@ -1522,9 +1967,174 @@ select {
 }
 
 
-/* =========================
+/* ---------- Edição atual ---------- */
+
+.edit-page-header {
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto 25px;
+}
+
+.edit-page-header h1 {
+  color: #760b19;
+
+  font-size: 30px;
+
+  font-weight: normal;
+
+  margin-bottom: 5px;
+}
+
+.edit-page-header p {
+  color: #806b5d;
+
+  font-size: 13px;
+}
+
+.edit-book-card {
+  width: 100%;
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  background: #fff9e7;
+
+  border: 1px solid #eee2bd;
+
+  border-radius: 16px;
+
+  padding: 35px;
+
+  box-shadow: 0 5px 15px rgba(80, 50, 20, 0.11);
+}
+
+.edit-form-section {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.edit-section-title {
+  border-bottom: 1px solid #eadfbe;
+
+  padding-bottom: 18px;
+
+  margin-bottom: 22px;
+}
+
+.edit-section-title h2 {
+  color: #4b3328;
+
+  font-size: 19px;
+
+  font-weight: normal;
+
+  margin-bottom: 4px;
+}
+
+.edit-section-title p {
+  color: #806b5d;
+
+  font-size: 12px;
+}
+
+.edit-book-card label {
+  color: #4b3328;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  margin-bottom: 6px;
+}
+
+.edit-book-card input,
+.edit-book-card select,
+.edit-book-card textarea {
+  width: 100%;
+
+  border: 1px solid #e2d7b8;
+
+  background: #f5f0e4;
+
+  border-radius: 9px;
+
+  padding: 12px 13px;
+
+  outline: none;
+
+  color: #4b3328;
+
+  font-size: 13px;
+
+  margin-bottom: 17px;
+
+  transition: 0.2s;
+}
+
+.edit-book-card input:focus,
+.edit-book-card select:focus,
+.edit-book-card textarea:focus {
+  background: #fffdf5;
+
+  border-color: #cdb76e;
+
+  box-shadow: 0 0 0 2px rgba(205, 183, 110, 0.18);
+}
+
+.edit-book-card textarea {
+  min-height: 130px;
+
+  resize: vertical;
+}
+
+.edit-book-card input::placeholder,
+.edit-book-card textarea::placeholder {
+  color: #a3998c;
+}
+
+
+/* ---------- Duas colunas sem Grid ---------- */
+
+.edit-form-row {
+  width: 100%;
+
+  display: flex;
+
+  gap: 18px;
+}
+
+.edit-form-field {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* ---------- Rodapé ---------- */
+
+.edit-form-footer {
+  border-top: 1px solid #eadfbe;
+
+  padding-top: 22px;
+
+  margin-top: 5px;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+
+/* =========================================================
    PERFIL
-========================= */
+========================================================= */
 
 .profile-content {
   width: 100%;
@@ -1646,9 +2256,7 @@ select {
 }
 
 
-/* =========================
-   PERFIL ANTIGO
-========================= */
+/* ---------- Perfil antigo ---------- */
 
 .profile-card h2 {
   text-align: center;
@@ -1733,628 +2341,53 @@ select {
 }
 
 
-/* =========================
-   LOGIN / CADASTRO ATUAL
-========================= */
+/* =========================================================
+   DETALHE DO AUTOR
+   Classes exclusivas para não conflitar com livros
+========================================================= */
 
-.login-page {
-  position: relative;
-
+.autor-detail-page {
   min-height: 100vh;
 
-  background:
-    linear-gradient(
-      rgba(65, 45, 30, 0.35),
-      rgba(65, 45, 30, 0.35)
-    ),
-    url("https://img.pikbest.com/origin/09/42/18/21VpIkbEsTRp9.jpg!w700wp");
+  padding: 40px 50px;
 
-  background-size: cover;
-
-  background-position: center;
-
-  background-repeat: no-repeat;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  padding: 30px;
+  background: #f5e9bd;
 }
 
-.login-page::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background: rgba(255, 255, 255, 0.5);
-
-  pointer-events: none;
-}
-
-.login-box {
-  position: relative;
-
-  z-index: 1;
-
-  width: 100%;
-
-  max-width: 390px;
-
-  padding: 32px 40px;
-
-  background: #fff9e9;
-
-  border-radius: 25px;
-
-  box-shadow: 0 8px 18px rgba(50, 30, 15, 0.2);
-
-  display: flex;
-
-  flex-direction: column;
-
-  text-align: left;
-}
-
-.login-box h1 {
-  color: #760d1b;
-
-  font-size: 38px;
-
-  font-weight: normal;
-
-  font-style: italic;
-
-  text-align: center;
-
-  margin-bottom: 6px;
-}
-
-.login-subtitle {
-  color: #76202b;
-
-  font-size: 16px;
-
-  text-align: center;
-
-  margin-bottom: 25px;
-}
-
-.login-box form {
-  display: flex;
-
-  flex-direction: column;
-}
-
-.login-box label {
-  font-size: 14px;
-
-  margin-bottom: 6px;
-}
-
-.login-box input {
-  width: 100%;
-
-  border: none;
-
-  background: #e9e5db;
-
-  border-radius: 10px;
-
-  padding: 12px 13px;
-
-  margin-bottom: 14px;
-
-  outline: none;
-
-  font-size: 14px;
-}
-
-.login-box input:focus {
-  box-shadow: 0 0 0 2px #ead18a;
-}
-
-.login-button {
-  width: 100%;
-
-  border: none;
-
-  border-radius: 12px;
-
-  padding: 12px;
-
-  background: #ead18a;
-
-  color: #4b3328;
-
-  cursor: pointer;
-
-  margin-top: 7px;
-
-  font-size: 15px;
-}
-
-.login-button:hover {
-  background: #dfc675;
-}
-
-.login-register {
-  text-align: center;
-
-  font-size: 13px;
-
-  margin-top: 15px;
-}
-
-.login-register button {
-  border: none;
-
-  background: transparent;
-
-  color: #8c1624;
-
-  cursor: pointer;
-
-  font-weight: bold;
-
-  font-size: 13px;
-
-  margin-left: 4px;
-}
-
-.login-error {
-  color: #b51e31;
-
-  font-size: 13px;
-
-  text-align: center;
-
-  margin-top: 5px;
-
-  margin-bottom: 5px;
-}
-
-
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-@media (max-width: 900px) {
-
-  .metrics {
-    flex-direction: column;
-  }
-
-  .new-book-content {
-    flex-direction: column;
-
-    align-items: center;
-  }
-
-  .edit-book-content {
-    flex-direction: column;
-
-    align-items: center;
-  }
-
-  .edit-book-form {
-    width: 100%;
-  }
-
-  .detail-content {
-    flex-direction: column;
-
-    align-items: center;
-
-    text-align: center;
-  }
-
-  .detail-text {
-    width: 100%;
-  }
-
-  .detail-box {
-    margin-left: auto;
-
-    margin-right: auto;
-  }
-
-  .detail-actions {
-    justify-content: center;
-  }
-}
-
-
-@media (max-width: 600px) {
-
-  .sidebar {
-    width: 80px;
-  }
-
-  .sidebar nav a span {
-    font-size: 9px;
-  }
-
-  .topbar {
-    padding: 0 20px;
-  }
-
-  .topbar h2 {
-    font-size: 20px;
-  }
-
-  .page-content,
-  .dashboard,
-  .new-book-page,
-  .book-detail,
-  .edit-book-page {
-    padding: 25px 20px;
-  }
-
-  .page-actions {
-    flex-wrap: wrap;
-  }
-
-  .search,
-  .author-search {
-    width: 100%;
-  }
-
-  .new-button {
-    margin-left: 0;
-  }
-
-  .detail-cover {
-    width: 180px;
-  }
-
-  .detail-cover img,
-  .cover-placeholder {
-    width: 190px;
-    height: 280px;
-  }
-
-  .detail-box {
-    width: 100%;
-  }
-
-  .upload-box {
-    width: 200px;
-    height: 220px;
-  }
-
-  .edit-cover {
-    width: 200px;
-    height: 240px;
-  }
-
-  .form-buttons,
-  .edit-form-buttons {
-    justify-content: center;
-
-    flex-direction: column;
-  }
-
-  .cancel,
-  .save,
-  .edit-cancel,
-  .edit-save {
-    width: 100%;
-  }
-
-  .detail-actions {
-    flex-direction: column;
-  }
-
-  .detail-actions button {
-    width: 100%;
-  }
-
-  .profile-card {
-    flex-direction: column;
-
-    text-align: center;
-  }
-}
-
-
-/* =========================
-   LIVROS - NOVO VISUAL
-========================= */
-
-.books-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  margin-bottom: 28px;
-}
-
-.books-title {
-  color: #760b19;
-
-  font-size: 31px;
-
-  font-weight: normal;
-
-  margin-bottom: 5px;
-}
-
-.books-subtitle {
-  color: #806b5d;
-
-  font-size: 14px;
-}
-
-.books-toolbar {
-  display: flex;
-  align-items: center;
-
-  gap: 15px;
-
-  margin-bottom: 18px;
-}
-
-.books-count {
-  color: #806b5d;
-
-  font-size: 13px;
-
-  background: #eee4c9;
-
-  padding: 9px 13px;
-
-  border-radius: 8px;
-}
-
-
-/* LISTA */
-
-.book-list {
-  display: flex;
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-.book-row {
-  min-height: 105px;
-
-  background: #fff9e7;
-
-  border: 1px solid #eee2bd;
-
-  border-radius: 13px;
-
-  padding: 14px 17px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 18px;
-
-  box-shadow: 0 3px 8px rgba(80, 50, 20, 0.08);
-
-  transition: 0.2s;
-}
-
-.book-row:hover {
-  transform: translateY(-2px);
-
-  box-shadow: 0 6px 14px rgba(80, 50, 20, 0.13);
-}
-
-
-/* CAPA */
-
-.mini-cover {
-  width: 62px;
-  height: 82px;
-
-  flex-shrink: 0;
-
-  border-radius: 7px;
-
-  overflow: hidden;
-
-  background: #e3dbc9;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-
-  box-shadow: 0 3px 7px rgba(60, 40, 20, 0.15);
-}
-
-.mini-cover img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-.mini-cover span {
-  font-size: 25px;
-}
-
-
-/* INFORMAÇÕES */
-
-.book-info {
-  flex: 1;
-
-  cursor: pointer;
-}
-
-.book-info h3 {
-  color: #4b3328;
-
-  font-size: 18px;
-
-  font-weight: normal;
-
-  margin-bottom: 5px;
-}
-
-.book-info p {
-  color: #760b19;
-
-  font-size: 13px;
-
-  margin-bottom: 6px;
-}
-
-.book-info small {
-  color: #806b5d;
-
-  font-size: 12px;
-}
-
-
-/* AÇÕES */
-
-.actions {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-}
-
-.book-action {
-  width: 34px;
-  height: 34px;
-
-  border: none;
-
-  border-radius: 8px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-
-  transition: 0.2s;
-}
-
-.book-action.edit {
-  background: #eee3bd;
-
-  color: #760b19;
-}
-
-.book-action.edit:hover {
-  background: #dfd0a3;
-}
-
-.book-action.view {
-  background: #e5e0d4;
-
-  color: #4b3328;
-}
-
-.book-action.view:hover {
-  background: #d8d0bf;
-}
-
-.book-action.delete {
-  background: #f5dddd;
-
-  color: #a51b2c;
-}
-
-.book-action.delete:hover {
-  background: #ecc8cc;
-}
-
-
-/* NENHUM LIVRO */
-
-.empty-books {
-  background: #fff9e7;
-
-  border-radius: 14px;
-
-  padding: 55px 20px;
-
-  text-align: center;
-
-  border: 1px solid #eee2bd;
-}
-
-.empty-books span {
-  display: block;
-
-  font-size: 42px;
-
-  margin-bottom: 12px;
-}
-
-.empty-books h3 {
-  color: #760b19;
-
-  font-size: 18px;
-
-  font-weight: normal;
-
-  margin-bottom: 5px;
-}
-
-.empty-books p {
-  color: #806b5d;
-
-  font-size: 13px;
-}
-
-
-/* =========================
-   VER LIVRO - NOVO VISUAL
-========================= */
-
-.detail-back {
+.autor-back {
   border: none;
 
   background: transparent;
 
   color: #760b19;
 
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
+  font-size: 14px;
 
   cursor: pointer;
 
-  font-size: 13px;
+  padding: 8px 0;
 
   margin-bottom: 22px;
-
-  padding: 5px 0;
 }
 
-.detail-back:hover {
+.autor-back:hover {
   color: #a51b2c;
 }
 
-.book-detail {
+.autor-detail-content {
   width: 100%;
 
-  max-width: 1050px;
+  max-width: 1000px;
+
+  min-height: 450px;
 
   margin: 0 auto;
 
+  padding: 40px;
+
   background: #fff9e7;
 
-  border-radius: 18px;
-
-  padding: 42px;
+  border-radius: 16px;
 
   display: flex;
 
@@ -2362,26 +2395,26 @@ select {
 
   gap: 45px;
 
-  box-shadow: 0 5px 15px rgba(80, 50, 20, 0.12);
+  box-shadow: 0 4px 12px rgba(80, 50, 20, 0.14);
 
   border: 1px solid #eee2bd;
 }
 
 
-/* CAPA */
+/* ---------- Foto ---------- */
 
-.book-detail-cover {
-  width: 240px;
+.autor-detail-cover {
+  width: 230px;
 
   flex-shrink: 0;
 }
 
-.book-detail-cover img,
-.book-cover-placeholder {
-  width: 240px;
-  height: 355px;
+.autor-detail-cover img,
+.autor-cover-placeholder {
+  width: 230px;
+  height: 300px;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   object-fit: cover;
 
@@ -2390,27 +2423,31 @@ select {
   align-items: center;
   justify-content: center;
 
-  background: #e4ddce;
+  background: #e2ddcd;
 
-  box-shadow: 0 6px 14px rgba(60, 40, 20, 0.18);
-}
-
-.book-cover-placeholder {
   color: #760b19;
 
-  font-size: 45px;
+  text-align: center;
+
+  padding: 20px;
+
+  box-shadow: 0 5px 12px rgba(60, 40, 20, 0.18);
+}
+
+.autor-cover-placeholder {
+  font-size: 22px;
 }
 
 
-/* INFORMAÇÕES */
+/* ---------- Informações ---------- */
 
-.book-detail-info {
+.autor-detail-text {
   flex: 1;
 
-  padding-top: 4px;
+  padding-top: 5px;
 }
 
-.detail-label {
+.autor-detail-label {
   display: block;
 
   color: #b08a48;
@@ -2419,369 +2456,93 @@ select {
 
   letter-spacing: 2px;
 
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 }
 
-.book-detail-info h1 {
+.autor-detail-text h1 {
   color: #760b19;
 
   font-size: 34px;
-
-  line-height: 1.2;
 
   font-weight: normal;
 
   font-style: italic;
 
-  margin-bottom: 8px;
+  line-height: 1.2;
+
+  margin-bottom: 18px;
 }
 
-.book-author {
+.autor-biografia {
   color: #806b5d;
 
-  font-size: 15px;
+  font-size: 14px;
+
+  line-height: 1.8;
 
   margin-bottom: 25px;
 }
 
 
-/* CAIXA DE INFORMAÇÕES */
+/* ---------- Informações do autor ---------- */
 
-.book-info-box {
+.autor-detail-box {
+  width: 100%;
+
+  max-width: 500px;
+
   background: #f1e6c4;
 
   border-radius: 11px;
 
-  padding: 17px 19px;
-
-  margin-bottom: 24px;
+  padding: 18px 20px;
 
   display: flex;
+
   flex-direction: column;
 
-  gap: 12px;
+  gap: 13px;
 }
 
-.book-info-box div {
+.autor-detail-box div {
   display: flex;
 
   justify-content: space-between;
 
+  align-items: center;
+
   gap: 20px;
 }
 
-.book-info-box span {
-  color: #806b5d;
+.autor-detail-box strong {
+  color: #760b19;
 
   font-size: 13px;
 }
 
-.book-info-box strong {
-  color: #760b19;
+.autor-detail-box span {
+  color: #806b5d;
 
   font-size: 13px;
-
-  font-weight: normal;
 
   text-align: right;
 }
 
 
-/* DESCRIÇÃO */
-
-.book-description {
-  border-top: 1px solid #eadfbe;
-
-  padding-top: 20px;
-}
-
-.book-description h3 {
-  color: #4b3328;
-
-  font-size: 17px;
-
-  font-weight: normal;
-
-  margin-bottom: 8px;
-}
-
-.book-description p {
-  color: #806b5d;
-
-  font-size: 13px;
-
-  line-height: 1.7;
-}
-
-
-/* BOTÕES */
-
-.detail-actions {
-  display: flex;
-
-  gap: 10px;
-
-  margin-top: 27px;
-}
-
-.detail-actions button {
-  border: none;
-
-  border-radius: 9px;
-
-  padding: 11px 18px;
-
-  display: flex;
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 7px;
-
-  cursor: pointer;
-
-  font-size: 13px;
-}
-
-.back-button {
-  background: #e4dfd1;
-
-  color: #4b3328;
-}
-
-.back-button:hover {
-  background: #d8d1bf;
-}
-
-.edit-button {
-  background: #760b19;
-
-  color: white;
-}
-
-.edit-button:hover {
-  background: #5f0914;
-}
-
-
-/* =========================
-   EDITAR LIVRO
-========================= */
-
-.edit-page-header {
-  width: 100%;
-
-  max-width: 1000px;
-
-  margin: 0 auto 25px;
-}
-
-.edit-page-header h1 {
-  color: #760b19;
-
-  font-size: 30px;
-
-  font-weight: normal;
-
-  margin-bottom: 5px;
-}
-
-.edit-page-header p {
-  color: #806b5d;
-
-  font-size: 13px;
-}
-
-
-/* CARD */
-
-.edit-book-card {
-  width: 100%;
-
-  max-width: 1000px;
-
-  margin: 0 auto;
-
-  background: #fff9e7;
-
-  border: 1px solid #eee2bd;
-
-  border-radius: 16px;
-
-  padding: 35px;
-
-  box-shadow: 0 5px 15px rgba(80, 50, 20, 0.11);
-}
-
-.edit-form-section {
-  display: flex;
-
-  flex-direction: column;
-}
-
-.edit-section-title {
-  border-bottom: 1px solid #eadfbe;
-
-  padding-bottom: 18px;
-
-  margin-bottom: 22px;
-}
-
-.edit-section-title h2 {
-  color: #4b3328;
-
-  font-size: 19px;
-
-  font-weight: normal;
-
-  margin-bottom: 4px;
-}
-
-.edit-section-title p {
-  color: #806b5d;
-
-  font-size: 12px;
-}
-
-
-/* CAMPOS */
-
-.edit-book-card label {
-  color: #4b3328;
-
-  font-size: 13px;
-
-  font-weight: bold;
-
-  margin-bottom: 6px;
-}
-
-.edit-book-card input,
-.edit-book-card select,
-.edit-book-card textarea {
-  width: 100%;
-
-  border: 1px solid #e2d7b8;
-
-  background: #f5f0e4;
-
-  border-radius: 9px;
-
-  padding: 12px 13px;
-
-  outline: none;
-
-  color: #4b3328;
-
-  font-size: 13px;
-
-  margin-bottom: 17px;
-
-  transition: 0.2s;
-}
-
-.edit-book-card input:focus,
-.edit-book-card select:focus,
-.edit-book-card textarea:focus {
-  background: #fffdf5;
-
-  border-color: #cdb76e;
-
-  box-shadow: 0 0 0 2px rgba(205, 183, 110, 0.18);
-}
-
-.edit-book-card textarea {
-  min-height: 130px;
-
-  resize: vertical;
-}
-
-.edit-book-card input::placeholder,
-.edit-book-card textarea::placeholder {
-  color: #a3998c;
-}
-
-
-/* DUAS COLUNAS SEM GRID */
-
-.edit-form-row {
-  width: 100%;
-
-  display: flex;
-
-  gap: 18px;
-}
-
-.edit-form-field {
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* RODAPÉ DO FORMULÁRIO */
-
-.edit-form-footer {
-  border-top: 1px solid #eadfbe;
-
-  padding-top: 22px;
-
-  margin-top: 5px;
-
-  display: flex;
-
-  justify-content: flex-end;
-
-  gap: 10px;
-}
-
-.edit-cancel,
-.edit-save {
-  border: none;
-
-  border-radius: 9px;
-
-  padding: 11px 19px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 7px;
-
-  cursor: pointer;
-
-  font-size: 13px;
-}
-
-.edit-cancel {
-  background: #e4dfd1;
-
-  color: #4b3328;
-}
-
-.edit-cancel:hover {
-  background: #d8d1bf;
-}
-
-.edit-save {
-  background: #760b19;
-
-  color: white;
-}
-
-.edit-save:hover {
-  background: #5f0914;
-}
-
-
-/* =========================
-   RESPONSIVIDADE DAS TELAS
-========================= */
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
 
 @media (max-width: 900px) {
+
+  /* Dashboard */
+
+  .metrics {
+    flex-direction: column;
+  }
+
+
+  /* Livros */
 
   .books-header {
     align-items: flex-start;
@@ -2794,6 +2555,37 @@ select {
   .new-button {
     margin-left: 0;
   }
+
+
+  /* Novo livro */
+
+  .new-book-content {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+
+  /* Editar livro */
+
+  .edit-book-content {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .edit-book-form {
+    width: 100%;
+  }
+
+  .edit-form-row {
+    flex-direction: column;
+
+    gap: 0;
+  }
+
+
+  /* Livro */
 
   .book-detail {
     flex-direction: column;
@@ -2817,14 +2609,84 @@ select {
     justify-content: center;
   }
 
-  .edit-form-row {
+
+  /* Autor */
+
+  .autor-detail-content {
     flex-direction: column;
 
-    gap: 0;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+  }
+
+  .autor-detail-text {
+    width: 100%;
+  }
+
+  .autor-detail-box {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+  .autor-detail-box div {
+    text-align: left;
   }
 }
 
+
 @media (max-width: 600px) {
+
+  /* Sidebar */
+
+  .sidebar {
+    width: 80px;
+  }
+
+  .sidebar nav a span {
+    font-size: 9px;
+  }
+
+
+  /* Topbar */
+
+  .topbar {
+    padding: 0 20px;
+  }
+
+  .topbar h2 {
+    font-size: 20px;
+  }
+
+
+  /* Conteúdo */
+
+  .page-content,
+  .dashboard,
+  .new-book-page,
+  .book-detail,
+  .edit-book-page {
+    padding: 25px 20px;
+  }
+
+
+  /* Livros */
+
+  .page-actions {
+    flex-wrap: wrap;
+  }
+
+  .search,
+  .author-search {
+    width: 100%;
+  }
+
+  .new-button {
+    margin-left: 0;
+  }
 
   .books-title {
     font-size: 25px;
@@ -2868,6 +2730,23 @@ select {
     height: 30px;
   }
 
+
+  /* Detalhe do livro */
+
+  .detail-cover {
+    width: 180px;
+  }
+
+  .detail-cover img,
+  .cover-placeholder {
+    width: 190px;
+    height: 280px;
+  }
+
+  .detail-box {
+    width: 100%;
+  }
+
   .book-detail {
     padding: 22px 17px;
   }
@@ -2905,6 +2784,33 @@ select {
     width: 100%;
   }
 
+
+  /* Formulários */
+
+  .upload-box {
+    width: 200px;
+    height: 220px;
+  }
+
+  .edit-cover {
+    width: 200px;
+    height: 240px;
+  }
+
+  .form-buttons,
+  .edit-form-buttons {
+    justify-content: center;
+
+    flex-direction: column;
+  }
+
+  .cancel,
+  .save,
+  .edit-cancel,
+  .edit-save {
+    width: 100%;
+  }
+
   .edit-book-card {
     padding: 22px 18px;
   }
@@ -2917,5 +2823,51 @@ select {
   .edit-save {
     width: 100%;
   }
-}
 
+
+  /* Perfil */
+
+  .profile-card {
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+
+  /* Autor */
+
+  .autor-detail-page {
+    padding: 25px 20px;
+  }
+
+  .autor-detail-content {
+    padding: 22px;
+  }
+
+  .autor-detail-cover,
+  .autor-detail-cover img,
+  .autor-cover-placeholder {
+    width: 190px;
+  }
+
+  .autor-detail-cover img,
+  .autor-cover-placeholder {
+    height: 270px;
+  }
+
+  .autor-detail-text h1 {
+    font-size: 27px;
+  }
+
+  .autor-detail-box div {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 4px;
+  }
+
+  .autor-detail-box span {
+    text-align: left;
+  }
+}
