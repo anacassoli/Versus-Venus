@@ -1,5 +1,8 @@
+
 import Sidebar from "../components/Sidebar";
+
 import { Bell, User } from "lucide-react";
+
 import "../index.css";
 
 export default function Dashboard() {
@@ -11,12 +14,14 @@ export default function Dashboard() {
       <main className="main">
 
         <header className="topbar">
+
           <div></div>
 
           <div className="top-icons">
             <Bell size={18} />
             <div className="avatar">A</div>
           </div>
+
         </header>
 
         <section className="dashboard">
@@ -24,25 +29,25 @@ export default function Dashboard() {
           <div className="metrics">
 
             <div className="metric">
-              <strong>200</strong>
+              <strong>--</strong>
               <span>Livros</span>
               <BookIcon />
             </div>
 
             <div className="metric">
-              <strong>53</strong>
+              <strong>--</strong>
               <span>Autores</span>
               <User size={40} />
             </div>
 
             <div className="metric">
-              <strong>1m</strong>
+              <strong>--</strong>
               <span>Usuários</span>
               <User size={40} />
             </div>
 
             <div className="metric">
-              <strong>50</strong>
+              <strong>--</strong>
               <span>Disponíveis</span>
               <BookIcon />
             </div>
@@ -55,25 +60,28 @@ export default function Dashboard() {
 
             <div className="recent-book">
               <div className="book-cover"></div>
+
               <div>
-                <h3>Harry Potter e a pedra filosofal</h3>
-                <p>Fantasia · 1997</p>
+                <h3>Carregando...</h3>
+                <p>--</p>
               </div>
             </div>
 
             <div className="recent-book">
               <div className="book-cover"></div>
+
               <div>
-                <h3>Divinos Rivais</h3>
-                <p>Fantasia · 2022</p>
+                <h3>Carregando...</h3>
+                <p>--</p>
               </div>
             </div>
 
             <div className="recent-book">
               <div className="book-cover"></div>
+
               <div>
-                <h3>Melhor do que nos filmes</h3>
-                <p>Romance · 2023</p>
+                <h3>Carregando...</h3>
+                <p>--</p>
               </div>
             </div>
 
@@ -82,6 +90,7 @@ export default function Dashboard() {
         </section>
 
       </main>
+
     </div>
   );
 }

@@ -5,31 +5,21 @@ function Header() {
   return (
     <header className="header">
 
-      <div className="header-logo">
-        <Link to="/home">
-          Bookly
-        </Link>
-      </div>
+      <Link to="/dashboard">
+        Início
+      </Link>
 
-      <nav className="header-nav">
+      <Link to="/autores">
+        Autores
+      </Link>
 
-        <Link to="/home">
-          Início
-        </Link>
+      <Link to="/livros">
+        Livros
+      </Link>
 
-        <Link to="/autores">
-          Autores
-        </Link>
-
-        <Link to="/livros">
-          Livros
-        </Link>
-
-        <Link to="/perfil">
-          Perfil
-        </Link>
-
-      </nav>
+      <Link to="/perfil">
+        Perfil
+      </Link>
 
     </header>
   );

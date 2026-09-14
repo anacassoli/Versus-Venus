@@ -1,3 +1,8 @@
+
+/* =========================
+   RESET
+========================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -16,6 +21,7 @@ textarea {
   font-family: inherit;
 }
 
+
 /* =========================
    LOGIN / CADASTRO
 ========================= */
@@ -23,19 +29,21 @@ textarea {
 .auth-page {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(65, 45, 30, .35), rgba(65, 45, 30, .35)),
+    linear-gradient(rgba(65, 45, 30, 0.35), rgba(65, 45, 30, 0.35)),
     url("/images/biblioteca.jpg");
-
   background-size: cover;
   background-position: center;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 20px;
 }
 
 .auth-content {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   text-align: center;
 }
 
@@ -54,14 +62,16 @@ textarea {
 }
 
 .auth-card {
-  width: 280px;
-  margin: auto;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+
   padding: 25px 35px;
 
   background: #fff9e9;
   border-radius: 25px;
 
-  box-shadow: 0 8px 18px rgba(50, 30, 15, .2);
+  box-shadow: 0 8px 18px rgba(50, 30, 15, 0.2);
 
   display: flex;
   flex-direction: column;
@@ -86,22 +96,30 @@ textarea {
 }
 
 .auth-card input {
+  width: 100%;
   border: none;
   background: #e9e5db;
   border-radius: 10px;
-  padding: 8px 10px;
+  padding: 9px 10px;
   margin-bottom: 10px;
   outline: none;
 }
 
 .btn-auth {
+  width: 100%;
   border: none;
   border-radius: 12px;
-  padding: 8px;
+  padding: 9px;
+
   background: #ead18a;
   color: #4b3328;
+
   cursor: pointer;
   margin-top: 5px;
+}
+
+.btn-auth:hover {
+  background: #dfc675;
 }
 
 .auth-link {
@@ -116,8 +134,9 @@ textarea {
 }
 
 .cadastro-card {
-  width: 300px;
+  max-width: 350px;
 }
+
 
 /* =========================
    ESTRUTURA INTERNA
@@ -129,41 +148,58 @@ textarea {
   background: #f5e9bd;
 }
 
+
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar {
   width: 103px;
   min-height: 100vh;
+
   background: #760b19;
   color: white;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  flex-shrink: 0;
 }
 
 .sidebar-logo {
   width: 100%;
   padding: 20px;
+
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .sidebar nav {
   width: 100%;
+
   display: flex;
   flex-direction: column;
 }
 
 .sidebar nav a {
+  width: 100%;
+
   padding: 13px 8px;
+
   color: white;
   text-decoration: none;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
   gap: 5px;
 
   font-size: 10px;
+
   cursor: pointer;
 }
 
@@ -171,22 +207,50 @@ textarea {
   background: #8d1525;
 }
 
+.sidebar nav a:active {
+  background: #67101b;
+}
+
 .logout {
   margin-top: auto;
+
+  width: 100%;
   padding: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
 }
+
+.logout:hover {
+  background: #8d1525;
+}
+
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
 
 .main {
   flex: 1;
   min-width: 0;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .topbar {
+  width: 100%;
   height: 55px;
+
   background: #fff9e7;
   border-bottom: 1px solid #eadcae;
 
-  padding: 0 18px;
+  padding: 0 28px;
 
   display: flex;
   align-items: center;
@@ -219,21 +283,35 @@ textarea {
 }
 
 .page-content {
-  padding: 22px 28px;
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 28px 40px;
 }
+
 
 /* =========================
    DASHBOARD
 ========================= */
 
 .dashboard {
-  padding: 22px 50px;
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 30px 40px;
 }
 
 .metrics {
+  width: 100%;
+
   display: flex;
   gap: 25px;
-  margin-bottom: 25px;
+
+  margin-bottom: 30px;
 }
 
 .metric {
@@ -241,16 +319,18 @@ textarea {
   min-height: 95px;
 
   background: #fff9e7;
-  border-radius: 6px;
+  border-radius: 8px;
 
-  box-shadow: 0 3px 5px rgba(80, 50, 20, .15);
+  box-shadow: 0 3px 5px rgba(80, 50, 20, 0.15);
 
-  padding: 12px;
+  padding: 15px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  text-align: center;
 }
 
 .metric strong {
@@ -268,31 +348,38 @@ textarea {
 }
 
 .recent-books {
-  width: 65%;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
 }
 
 .recent-book {
+  width: 100%;
+  min-height: 55px;
+
   background: #fff9e7;
-  min-height: 50px;
   border-radius: 7px;
 
-  padding: 7px 12px;
+  padding: 8px 12px;
 
   display: flex;
   align-items: center;
+
   gap: 12px;
 
-  box-shadow: 0 2px 4px rgba(80, 50, 20, .15);
+  box-shadow: 0 2px 4px rgba(80, 50, 20, 0.15);
 }
 
 .book-cover {
   width: 30px;
   height: 38px;
+
   background: #704327;
   border-radius: 3px;
+
+  flex-shrink: 0;
 }
 
 .recent-book h3 {
@@ -304,19 +391,24 @@ textarea {
   font-size: 9px;
 }
 
+
 /* =========================
    LIVROS
 ========================= */
 
 .page-actions {
+  width: 100%;
+
   display: flex;
   align-items: center;
+
   gap: 15px;
-  margin-bottom: 15px;
+
+  margin-bottom: 18px;
 }
 
 .search {
-  height: 32px;
+  height: 34px;
   width: 260px;
 
   background: #fff9e7;
@@ -324,6 +416,7 @@ textarea {
 
   display: flex;
   align-items: center;
+
   gap: 7px;
 
   padding: 0 10px;
@@ -331,18 +424,29 @@ textarea {
 
 .search input {
   width: 100%;
+
   border: none;
   outline: none;
+
   background: transparent;
+
   font-size: 11px;
 }
 
 .filter {
   border: none;
+
   background: #fff9e7;
+
   padding: 8px 20px;
+
   border-radius: 7px;
+
   cursor: pointer;
+}
+
+.filter:hover {
+  background: #eee4c9;
 }
 
 .new-button {
@@ -350,6 +454,7 @@ textarea {
 
   display: flex;
   align-items: center;
+
   gap: 5px;
 
   background: #b51e31;
@@ -359,39 +464,53 @@ textarea {
   border-radius: 6px;
 
   padding: 8px 14px;
+
   cursor: pointer;
 }
 
+.new-button:hover {
+  background: #8f1827;
+}
+
 .book-list {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: 5px;
+
+  gap: 7px;
 }
 
 .book-row {
+  width: 100%;
   min-height: 62px;
 
   background: #fff9e7;
   border-radius: 6px;
 
-  padding: 7px 10px;
+  padding: 8px 12px;
 
   display: flex;
   align-items: center;
+
   gap: 12px;
 
-  box-shadow: 0 1px 3px rgba(80, 50, 20, .15);
+  box-shadow: 0 1px 3px rgba(80, 50, 20, 0.15);
 }
 
 .mini-cover {
   width: 35px;
   height: 48px;
+
   background: #21748d;
   border-radius: 3px;
+
+  flex-shrink: 0;
 }
 
 .book-info {
   flex: 1;
+  min-width: 0;
 }
 
 .book-info h3 {
@@ -423,6 +542,7 @@ textarea {
   align-items: center;
 }
 
+
 /* =========================
    AUTORES
 ========================= */
@@ -432,12 +552,16 @@ textarea {
 }
 
 .author-list {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: 5px;
+
+  gap: 7px;
 }
 
 .author-row {
+  width: 100%;
   min-height: 58px;
 
   background: #fff9e7;
@@ -447,9 +571,10 @@ textarea {
 
   display: flex;
   align-items: center;
+
   gap: 12px;
 
-  box-shadow: 0 2px 3px rgba(80, 50, 20, .15);
+  box-shadow: 0 2px 3px rgba(80, 50, 20, 0.15);
 }
 
 .author-photo {
@@ -457,6 +582,7 @@ textarea {
   height: 35px;
 
   border-radius: 50%;
+
   background: #c68c70;
 
   display: flex;
@@ -464,6 +590,8 @@ textarea {
   align-items: center;
 
   color: white;
+
+  flex-shrink: 0;
 }
 
 .author-row > div:nth-child(2) {
@@ -479,39 +607,53 @@ textarea {
   font-size: 9px;
 }
 
+
 /* =========================
    DETALHE DO LIVRO
 ========================= */
 
 .book-detail {
   min-height: 100vh;
-  padding: 15px;
+
+  padding: 30px 40px;
+
   background: #f5e9bd;
 }
 
 .back {
   background: transparent;
   border: none;
+
   cursor: pointer;
+
   font-size: 13px;
   color: #4b3328;
+
+  margin-bottom: 20px;
 }
 
 .detail-content {
-  max-width: 1000px;
-  margin: 5px auto;
+  width: 100%;
+  max-width: 950px;
+
+  margin: 20px auto;
 
   display: flex;
+
   gap: 50px;
+
   align-items: center;
 }
 
 .detail-cover {
   width: 180px;
+
+  flex-shrink: 0;
 }
 
 .cover-placeholder {
   height: 260px;
+
   border-radius: 5px;
 
   background: #17849d;
@@ -520,7 +662,12 @@ textarea {
   padding: 25px 15px;
 
   font-size: 25px;
+
   text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .detail-text {
@@ -529,37 +676,52 @@ textarea {
 
 .detail-text h1 {
   color: #8b1825;
+
   font-size: 24px;
+
   font-style: italic;
   font-weight: normal;
+
   margin-bottom: 10px;
 }
 
 .detail-text p {
   font-size: 12px;
-  line-height: 1.4;
+
+  line-height: 1.5;
+
   margin-bottom: 10px;
 }
 
 .detail-box {
   width: 300px;
+
   background: #ead59c;
+
   padding: 10px 20px;
+
   border-radius: 7px;
+
+  margin-top: 15px;
 }
 
 .detail-box p {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 4px;
 }
 
 .stars {
   margin-top: 20px;
+
   color: #dcae37;
+
   font-size: 32px;
+
   letter-spacing: 5px;
 }
+
 
 /* =========================
    NOVO LIVRO
@@ -567,23 +729,35 @@ textarea {
 
 .new-book-page {
   min-height: 100vh;
+
   background: #f5e9bd;
-  padding: 12px 18px;
+
+  padding: 30px 40px;
 }
 
 .new-book-page > h1 {
   text-align: center;
+
   color: #8b1825;
+
   font-size: 22px;
+
   font-weight: normal;
+
+  margin-bottom: 25px;
 }
 
 .new-book-content {
+  width: 100%;
   max-width: 850px;
-  margin: 30px auto;
+
+  margin: 0 auto;
 
   display: flex;
+
   gap: 30px;
+
+  align-items: flex-start;
 }
 
 .upload-box {
@@ -591,14 +765,18 @@ textarea {
   height: 205px;
 
   background: #e2ddcd;
+
   border-radius: 8px;
 
-  box-shadow: 0 2px 4px rgba(60, 40, 20, .2);
+  box-shadow: 0 2px 4px rgba(60, 40, 20, 0.2);
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
 }
 
 .upload-icon {
@@ -625,14 +803,20 @@ textarea {
 
 .book-form input,
 .book-form textarea {
+  width: 100%;
+
   border: none;
+
   border-radius: 7px;
+
   background: #e7e3d9;
 
   padding: 8px;
+
   margin-bottom: 7px;
 
   outline: none;
+
   font-size: 10px;
 }
 
@@ -643,16 +827,22 @@ textarea {
 
 .form-buttons {
   display: flex;
+
   justify-content: flex-end;
+
   gap: 10px;
+
   margin-top: 5px;
 }
 
 .cancel,
 .save {
   border: none;
+
   padding: 8px 35px;
+
   border-radius: 10px;
+
   cursor: pointer;
 }
 
@@ -660,31 +850,49 @@ textarea {
   background: #e4dfd1;
 }
 
+.cancel:hover {
+  background: #d7d0be;
+}
+
 .save {
   background: #760b19;
   color: white;
 }
+
+.save:hover {
+  background: #5f0914;
+}
+
 
 /* =========================
    PERFIL
 ========================= */
 
 .profile-content {
+  width: 100%;
+
   padding: 40px;
+
   display: flex;
+
   justify-content: center;
+  align-items: flex-start;
 }
 
 .profile-card {
-  width: 430px;
+  width: 100%;
+  max-width: 430px;
 
   background: #fff9e7;
+
   border-radius: 7px;
 
-  padding: 20px;
+  padding: 25px;
 
   display: flex;
   flex-direction: column;
+
+  box-shadow: 0 3px 8px rgba(80, 50, 20, 0.12);
 }
 
 .profile-photo {
@@ -692,15 +900,17 @@ textarea {
   height: 75px;
 
   border-radius: 50%;
+
   background: #ca7384;
 
-  margin: auto;
+  margin: 0 auto;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   color: white;
+
   font-size: 25px;
 
   position: relative;
@@ -708,6 +918,7 @@ textarea {
 
 .camera {
   position: absolute;
+
   bottom: 0;
   right: -2px;
 
@@ -715,6 +926,7 @@ textarea {
   height: 20px;
 
   background: #a51b2c;
+
   border-radius: 50%;
 
   display: flex;
@@ -724,48 +936,126 @@ textarea {
 
 .profile-card h2 {
   text-align: center;
+
   font-size: 16px;
+
   margin-top: 7px;
 }
 
 .profile-card > p {
   text-align: center;
+
   font-size: 10px;
+
   margin-bottom: 20px;
 }
 
 .profile-card label {
   font-size: 9px;
+
   margin-bottom: 3px;
 }
 
 .profile-card input {
+  width: 100%;
+
   border: 1px solid #e2d7b8;
+
   border-radius: 5px;
+
   padding: 7px;
+
   margin-bottom: 8px;
+
   background: white;
+
   font-size: 9px;
 }
 
 .profile-save {
   border: none;
+
   background: #f06d9b;
+
   color: white;
 
-  padding: 6px;
+  padding: 7px;
+
   border-radius: 5px;
 
   margin-top: 3px;
+
+  cursor: pointer;
 }
 
 .delete-account {
   border: 1px solid #c63a49;
+
   background: transparent;
+
   color: #c63a49;
 
-  padding: 5px;
+  padding: 6px;
+
   border-radius: 5px;
 
-  margin-top: 4px;
+  margin-top: 6px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 800px) {
+  .metrics {
+    flex-direction: column;
+  }
+
+  .new-book-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-box {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    width: 75px;
+  }
+
+  .sidebar nav a span {
+    font-size: 8px;
+  }
+
+  .page-content,
+  .dashboard,
+  .new-book-page,
+  .book-detail {
+    padding: 20px;
+  }
+
+  .page-actions {
+    flex-wrap: wrap;
+  }
+
+  .search,
+  .author-search {
+    width: 100%;
+  }
+
+  .new-button {
+    margin-left: 0;
+  }
 }

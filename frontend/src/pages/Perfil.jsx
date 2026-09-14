@@ -1,8 +1,34 @@
-import Sidebar from "../components/Sidebar";
+
+import { useEffect, useState } from "react";
 import { Bell, Camera } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+import Sidebar from "../components/Sidebar";
 import "../index.css";
 
 export default function Perfil() {
+  const navigate = useNavigate();
+
+  const [usuario, setUsuario] = useState({
+    nome: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    const usuarioSalvo = localStorage.getItem("usuario");
+
+    if (usuarioSalvo) {
+      setUsuario(JSON.parse(usuarioSalvo));
+    }
+  }, []);
+
+  function sairDaConta() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+
+    navigate("/");
+  }
+
   return (
     <div className="app">
 
@@ -15,7 +41,10 @@ export default function Perfil() {
 
           <div className="top-icons">
             <Bell size={18} />
-            <div className="avatar">A</div>
+
+            <div className="avatar">
+              {usuario.nome ? usuario.nome.charAt(0).toUpperCase() : "U"}
+            </div>
           </div>
         </header>
 
@@ -24,29 +53,50 @@ export default function Perfil() {
           <div className="profile-card">
 
             <div className="profile-photo">
-              V
+              {usuario.nome ? usuario.nome.charAt(0).toUpperCase() : "U"}
+
               <div className="camera">
                 <Camera size={13} />
               </div>
             </div>
 
-            <h2>Virginia</h2>
-            <p>virginia@gmail.com</p>
+            <h2>
+              {usuario.nome || "Usuário"}
+            </h2>
+
+            <p>
+              {usuario.email || "E-mail não informado"}
+            </p>
 
             <label>Nome completo</label>
-            <input value="Virginia" readOnly />
+
+            <input
+              value={usuario.nome}
+              readOnly
+            />
 
             <label>E-mail</label>
-            <input value="virginia@gmail.com" readOnly />
+
+            <input
+              value={usuario.email}
+              readOnly
+            />
 
             <label>Senha</label>
-            <input value="••••••••" readOnly />
+
+            <input
+              value="••••••••"
+              readOnly
+            />
 
             <button className="profile-save">
               Salvar alterações
             </button>
 
-            <button className="delete-account">
+            <button
+              className="delete-account"
+              onClick={sairDaConta}
+            >
               Sair da conta
             </button>
 
@@ -55,6 +105,8 @@ export default function Perfil() {
         </section>
 
       </main>
+
     </div>
   );
 }
+

@@ -1,47 +1,92 @@
+
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import "../index.css";
 
 export default function DetalheLivro() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [livro, setLivro] = useState(null);
+
+  useEffect(() => {
+    buscarLivro();
+  }, [id]);
+
+  async function buscarLivro() {
+    try {
+      const resposta = await fetch(`http://localhost:3000/livros/${id}`);
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar livro");
+      }
+
+      const dados = await resposta.json();
+
+      setLivro(dados);
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  }
+
+  if (!livro) {
+    return (
+      <div className="book-detail">
+        <p>Carregando livro...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="book-detail">
 
-      <button className="back">← voltar</button>
+      <button
+        className="back"
+        onClick={() => navigate("/livros")}
+      >
+        ← voltar
+      </button>
 
       <div className="detail-content">
 
         <div className="detail-cover">
+
           <div className="cover-placeholder">
-            A Hipótese<br />
-            do Amor
+            {livro.titulo}
           </div>
+
         </div>
 
         <div className="detail-text">
 
-          <h1>A hipótese do amor</h1>
+          <h1>{livro.titulo}</h1>
 
           <p>
-            Olive Smith é uma doutoranda dedicada à ciência e não acredita
-            muito no amor — principalmente depois de algumas experiências
-            que fizeram com que ela desistisse de relacionamentos.
-          </p>
-
-          <p>
-            O problema é que o namorado falso de Olive acaba sendo Adam
-            Carlsen, um professor famoso por sua personalidade difícil.
-          </p>
-
-          <p>
-            O que começa como um simples relacionamento de mentira logo
-            se torna mais complicado quando Olive percebe que Adam talvez
-            não seja exatamente o homem que ela imaginava.
+            {livro.descricao || "Descrição não informada."}
           </p>
 
           <div className="detail-box">
 
-            <p><strong>Gênero</strong> Romance</p>
-            <p><strong>Ano</strong> 2022</p>
-            <p><strong>Autora</strong> Ali Hazelwood</p>
-            <p><strong>Editora</strong> Arqueiro</p>
+            <p>
+              <strong>Gênero</strong>{" "}
+              {livro.genero || "--"}
+            </p>
+
+            <p>
+              <strong>Ano</strong>{" "}
+              {livro.ano || "--"}
+            </p>
+
+            <p>
+              <strong>Autor</strong>{" "}
+              {livro.autor || "--"}
+            </p>
+
+            <p>
+              <strong>Editora</strong>{" "}
+              {livro.editora || "--"}
+            </p>
 
           </div>
 
@@ -56,3 +101,4 @@ export default function DetalheLivro() {
     </div>
   );
 }
+

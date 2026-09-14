@@ -1,3 +1,6 @@
+
+import { useNavigate } from "react-router-dom";
+
 import {
   BookOpen,
   House,
@@ -8,6 +11,13 @@ import {
 } from "lucide-react";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  function sair() {
+    localStorage.removeItem("token");
+    navigate("/");
+  }
+
   return (
     <aside className="sidebar">
 
@@ -16,17 +26,18 @@ export default function Sidebar() {
       </div>
 
       <nav>
-        <a>
+
+        <a onClick={() => navigate("/dashboard")}>
           <House size={18} />
           <span>Início</span>
         </a>
 
-        <a>
+        <a onClick={() => navigate("/livros")}>
           <BookOpen size={18} />
           <span>Livros</span>
         </a>
 
-        <a>
+        <a onClick={() => navigate("/autores")}>
           <Tags size={18} />
           <span>Autores</span>
         </a>
@@ -36,13 +47,14 @@ export default function Sidebar() {
           <span>Usuários</span>
         </a>
 
-        <a>
+        <a onClick={() => navigate("/perfil")}>
           <User size={18} />
           <span>Meu Perfil</span>
         </a>
+
       </nav>
 
-      <div className="logout">
+      <div className="logout" onClick={sair}>
         <LogOut size={18} />
       </div>
 
